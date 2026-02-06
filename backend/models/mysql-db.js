@@ -23,7 +23,10 @@ const pool = mysql.createPool({
     connectionLimit: 2, // Reduced from 10 to 2 for free tier compatibility
     queueLimit: 0,
     enableKeepAlive: true,
-    keepAliveInitialDelay: 0
+    keepAliveInitialDelay: 0,
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
 
 // Helper validation for JSON fields
