@@ -105,7 +105,7 @@ export function registerComponent(config) {
 // Fetch custom components from backend
 export async function fetchCustomComponents() {
     try {
-        const API_URL = location.hostname === 'localhost' ? 'http://localhost:3001' : '/api';
+        const API_URL = location.hostname === 'localhost' ? 'http://localhost:3001' : '';
         const response = await fetch(`${API_URL}/api/components/custom`);
         if (!response.ok) return;
 

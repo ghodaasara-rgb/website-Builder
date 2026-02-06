@@ -24,9 +24,18 @@ const USE_MYSQL = process.env.MYSQL_HOST && process.env.MYSQL_DATABASE;
 const COMPONENTS_DIR = path.join(__dirname, '../lwr-project/src/modules/custom');
 
 // Configure Multer for temp upload
-const upload = multer({ dest: path.join(__dirname, 'temp_uploads') });
+// Configure Multer for temp upload
+const TEMP_DIR = process.env.VERCEL ? '/tmp' : path.join(__dirname, 'temp_uploads');
+const upload = multer({ dest: TEMP_DIR });
 
 const app = express();
+
+// ... (existing code) ...
+
+// Later in the file:
+// Let's unzip to a temp staging folder first
+const tempStage = path.join(TEMP_DIR, `stage_${nanoid()}`);
+zip.extractAllTo(tempStage, true);
 
 // CORS Configuration - Allow frontend URLs from environment variable
 const allowedOrigins = process.env.FRONTEND_URL
@@ -620,7 +629,8 @@ app.post('/api/components/import', upload.single('file'), async (req, res) => {
 
         // For simplicity: We enforce that the zip MUST contain a single top-level folder matching the component name OR files at root
         // Let's unzip to a temp staging folder first
-        const tempStage = path.join(__dirname, 'temp_uploads', `stage_${nanoid()}`);
+        // Let's unzip to a temp staging folder first
+        const tempStage = path.join(TEMP_DIR, `stage_${nanoid()}`);
         zip.extractAllTo(tempStage, true);
 
         // Analyze extracted files
