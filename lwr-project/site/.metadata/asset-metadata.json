@@ -1,0 +1,132 @@
+{
+  "assets": {
+    "/css/framework.css": {
+      "path": "/1/asset/immutable/s/17690773040000000/css/framework.css",
+      "mimeType": "text/css"
+    },
+    "/css/DOCUMENTATION.md": {
+      "path": "/css/DOCUMENTATION.md",
+      "mimeType": "text/markdown"
+    },
+    "/css/README.md": {
+      "path": "/css/README.md",
+      "mimeType": "text/markdown"
+    },
+    "/css/accessibility/checklist.md": {
+      "path": "/css/accessibility/checklist.md",
+      "mimeType": "text/markdown"
+    },
+    "/css/builder/builder.css": {
+      "path": "/css/builder/builder.css",
+      "mimeType": "text/css"
+    },
+    "/css/components/alert.css": {
+      "path": "/css/components/alert.css",
+      "mimeType": "text/css"
+    },
+    "/css/components/badge.css": {
+      "path": "/css/components/badge.css",
+      "mimeType": "text/css"
+    },
+    "/css/components/breadcrumbs.css": {
+      "path": "/css/components/breadcrumbs.css",
+      "mimeType": "text/css"
+    },
+    "/css/components/button.css": {
+      "path": "/css/components/button.css",
+      "mimeType": "text/css"
+    },
+    "/css/components/checkbox-radio.css": {
+      "path": "/css/components/checkbox-radio.css",
+      "mimeType": "text/css"
+    },
+    "/css/components/empty-state.css": {
+      "path": "/css/components/empty-state.css",
+      "mimeType": "text/css"
+    },
+    "/css/components/input.css": {
+      "path": "/css/components/input.css",
+      "mimeType": "text/css"
+    },
+    "/css/components/loader.css": {
+      "path": "/css/components/loader.css",
+      "mimeType": "text/css"
+    },
+    "/css/components/nav.css": {
+      "path": "/css/components/nav.css",
+      "mimeType": "text/css"
+    },
+    "/css/components/pagination.css": {
+      "path": "/css/components/pagination.css",
+      "mimeType": "text/css"
+    },
+    "/css/components/select.css": {
+      "path": "/css/components/select.css",
+      "mimeType": "text/css"
+    },
+    "/css/components/table.css": {
+      "path": "/css/components/table.css",
+      "mimeType": "text/css"
+    },
+    "/css/layout/accordion.css": {
+      "path": "/css/layout/accordion.css",
+      "mimeType": "text/css"
+    },
+    "/css/layout/card.css": {
+      "path": "/css/layout/card.css",
+      "mimeType": "text/css"
+    },
+    "/css/layout/drawer.css": {
+      "path": "/css/layout/drawer.css",
+      "mimeType": "text/css"
+    },
+    "/css/layout/grid.css": {
+      "path": "/css/layout/grid.css",
+      "mimeType": "text/css"
+    },
+    "/css/layout/modal.css": {
+      "path": "/css/layout/modal.css",
+      "mimeType": "text/css"
+    },
+    "/css/layout/section.css": {
+      "path": "/css/layout/section.css",
+      "mimeType": "text/css"
+    },
+    "/css/layout/sticky.css": {
+      "path": "/css/layout/sticky.css",
+      "mimeType": "text/css"
+    },
+    "/css/layout/tabs.css": {
+      "path": "/css/layout/tabs.css",
+      "mimeType": "text/css"
+    },
+    "/css/themes/dark.css": {
+      "path": "/css/themes/dark.css",
+      "mimeType": "text/css"
+    },
+    "/css/themes/labscoop.css": {
+      "path": "/css/themes/labscoop.css",
+      "mimeType": "text/css"
+    },
+    "/css/themes/light.css": {
+      "path": "/css/themes/light.css",
+      "mimeType": "text/css"
+    },
+    "/css/themes/tenant-acme.css": {
+      "path": "/css/themes/tenant-acme.css",
+      "mimeType": "text/css"
+    },
+    "/css/themes/tenant-globex.css": {
+      "path": "/css/themes/tenant-globex.css",
+      "mimeType": "text/css"
+    },
+    "/css/tokens.css": {
+      "path": "/css/tokens.css",
+      "mimeType": "text/css"
+    },
+    "/css/validation-report.md": {
+      "path": "/css/validation-report.md",
+      "mimeType": "text/markdown"
+    }
+  }
+}

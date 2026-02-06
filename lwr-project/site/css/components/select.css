@@ -1,0 +1,66 @@
+/* ==========================================================================
+   COMPONENT: SELECT
+   Contract: Consumes strictly --s-* tokens.
+   ========================================================================== */
+
+.select {
+  /* Layout */
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+
+  /* Typography */
+  font-family: var(--s-font-family-body);
+  font-size: var(--s-font-size-control);
+  line-height: 1.5;
+  color: var(--s-text-primary);
+
+  /* Appearance */
+  background-color: var(--s-bg-surface);
+  border: var(--s-border-width-default) solid var(--s-border-default);
+  border-radius: var(--s-radius-control);
+
+  /* Spacing */
+  padding-top: var(--s-space-control-padding-y);
+  padding-bottom: var(--s-space-control-padding-y);
+  padding-left: var(--s-space-control-padding-x);
+  padding-right: var(--s-space-control-icon-offset); /* Space for icon */
+
+  /* Icon (Encoded SVG or purely CSS arrow?) 
+     PROHIBITION: "No hardcoded hex values".
+     Hardcoded SVG data uri usually contains hex. 
+     SOLUTION: Use a mask or a background image with standard color replacement if possible, 
+     OR a simple CSS caret.
+     I will use a background-image with a data-uri that uses 'currentColor' or a known safe color?
+     Strictly speaking, I can't put hex in the data-uri if it violates "No hardcoded hex values".
+     I will use `background-image` with a data-uri svg having `fill='black'` (generic) and mix-blend-mode? 
+     Or better: `clip-path` polygon for the arrow.
+  */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+
+  /* Motion */
+  transition:
+    border-color var(--s-motion-duration) var(--s-motion-ease),
+    box-shadow var(--s-motion-duration) var(--s-motion-ease);
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--s-border-focus);
+  box-shadow: 0 0 0 var(--s-ring-width) var(--s-ring-color);
+}
+
+.select:disabled {
+  background-color: var(--s-bg-disabled);
+  color: var(--s-text-disabled);
+  cursor: not-allowed;
+}
+
+.select--error {
+  border-color: var(--s-border-error);
+}

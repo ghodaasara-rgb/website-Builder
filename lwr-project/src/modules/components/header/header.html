@@ -1,0 +1,21 @@
+<template>
+    <header class="site-header">
+        <div class="branding">
+            <div class="logo-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 19H22L12 2Z" stroke="#4F46E5" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <span class="brand-name">FlexSite</span>
+        </div>
+        <div class="actions">
+            <button class="btn btn-secondary" onclick={handleDashboard}>Dashboard</button>
+            <button class="btn btn-primary" onclick={handleSave} disabled={isSaving}>
+                <template if:true={isSaving}>Saving...</template>
+                <template if:false={isSaving}>Save</template>
+            </button>
+            <button class="btn btn-secondary" onclick={handlePreview}>Preview</button>
+        </div>
+    </header>
+</template>

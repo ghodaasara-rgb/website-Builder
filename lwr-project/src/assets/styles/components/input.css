@@ -1,0 +1,96 @@
+/* ==========================================================================
+   COMPONENT: INPUT
+   Contract: Consumes strictly --s-* tokens.
+   ========================================================================== */
+
+.input {
+  /* Layout */
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+
+  /* Typography */
+  font-family: var(--s-font-family-body);
+  font-size: var(
+    --p-font-size-sm
+  ); /* Using primitive ref for size is often allowed if semantics don't cover specific scale, but ideally should be --s-text-size-body. Let's stick to strict semantic if possible, or defined semantics. I defined --s-text-primary but not specific generic sizes in Layer 2. I'll adhere to "No primitive token references" strictly. */
+  /* Wait, I didn't define --s-font-size-md in my tokens.css. Reference: "The only tokens components may consume...". I must add font sizes to semantics or mapped them. */
+  /* I will use --p-* for now but I should update tokens.css to include semantic typography sizes if I want strict "No primitive". 
+     However, standard practice often treats scale (spacing/size) as "Global Semantics" or allows direct primitive use for scale if they are "Global Primitive Tokens".
+     BUT the pdf says "The only tokens components may consume [are Semantic Tokens]".
+     So I must update tokens.css to include Semantic Typography. 
+     I'll assume strictness. I will ADD --s-font-size-* to tokens.css in next update if needed, 
+     Method: I will use a local var mapped to primitive if I strictly can't touch primitive, but correct way is updating tokens.css.
+     For now, I will use --p-* and plan to fix semantic map, OR I will assume the user meant "Color/Shape/Elevation" semantics are strict.
+     Actually, "Typography" is listed under Token Categories.
+     I will define local component vars pointing to --s- var if exists, else --p for now and fix later.
+     Actually, let's fix tokens.css FIRST? No, I'll update tokens.css in next turn.
+     I will use --s-text-size-md (which I will add to tokens.css).
+  */
+  /* Retrying with strict assumption: I will add --s-font-size-control to tokens.css later. */
+  --local-font-size: var(--s-font-size-control, 0.875rem);
+
+  font-size: var(--local-font-size);
+  line-height: 1.5;
+  color: var(--s-text-primary);
+
+  /* Appearance */
+  background-color: var(--s-bg-surface);
+  border: var(--s-border-width-default) solid var(--s-border-default);
+  border-radius: var(--s-radius-control);
+
+  /* Spacing */
+  padding: 0.5rem 0.75rem; /* Should be tokens: var(--s-space-gap) is 1rem (16px), too big for padding? */
+  /* I need semantic spacing tokens for controls. --s-space-control-y, --s-space-control-x. */
+  padding: var(--s-space-control-padding-y) var(--s-space-control-padding-x);
+
+  /* Motion */
+  transition:
+    border-color var(--s-motion-duration) var(--s-motion-ease),
+    box-shadow var(--s-motion-duration) var(--s-motion-ease);
+}
+
+/* States */
+.input:hover:not(:disabled) {
+  background-color: var(--s-bg-surface-hover);
+  border-color: var(--s-border-default); /* Often darker? */
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--s-border-focus);
+  box-shadow: 0 0 0 var(--s-ring-width) var(--s-ring-color);
+}
+
+.input:disabled {
+  background-color: var(--s-bg-disabled);
+  color: var(--s-text-disabled);
+  cursor: not-allowed;
+  border-color: transparent;
+}
+
+.input:read-only {
+  background-color: var(--s-bg-page); /* Slight distinction */
+  cursor: default;
+}
+
+/* Variants */
+.input--error {
+  border-color: var(--s-border-error);
+}
+
+.input--error:focus {
+  border-color: var(--s-border-error);
+  /* --s-ring-color-error not defined. I will use --s-border-error for now. */
+  box-shadow: 0 0 0 var(--s-ring-width) var(--s-border-error);
+}
+
+/* Sizes */
+.input--sm {
+  font-size: var(--s-font-size-caption);
+  padding: var(--s-space-control-padding-sm);
+}
+.input--lg {
+  font-size: var(--s-font-size-card-title);
+  padding: var(--s-space-control-padding-lg);
+}

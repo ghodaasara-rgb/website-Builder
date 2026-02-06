@@ -1,0 +1,142 @@
+<template>
+    <div class="builder-root">
+        <components-header onsave={handleSave} onpreview={handlePreview} ondashboard={handleDashboard}
+            is-saving={isSaving}></components-header>
+        <div class="workspace">
+            <div class="left-container">
+                <custom-activity-bar active-tab={activeTab} ontabselect={handleTabSelect}></custom-activity-bar>
+                <custom-side-panel active-tab={activeTab} components={componentList} pages={pagesList}
+                    selected-component={selectedComponent} oncomponentdeletefromtree={handleComponentDeleteFromTree}
+                    oncomponentselect={handleComponentSelect} oncomponentdeselect={handleComponentDeselect}
+                    oncomponentreorder={handleComponentReorder} onpropertychange={handlePropertyChange}
+                    onpageadd={handlePageAdd} onpageselect={handlePageSelect} onpagerename={handlePageRename}
+                    onpagedelete={handlePageDelete} onexportsite={handleExportSite} onthemechange={handleThemeChange}
+                    onheaderchange={handleHeaderChange} oncomponentimport={handleComponentImport}>
+                </custom-side-panel>
+            </div>
+
+            <div class="canvas-area">
+                <div class="canvas-viewport">
+                    <!-- Global Header Preview -->
+                    <div class="site-header-preview" style={headerStyle}>
+                        <div class="header-content">
+                            <div class="header-logo">
+                                <template lwc:if={isLogoImage}>
+                                    <img src={headerConfig.logoSrc} alt={headerConfig.logoAlt} />
+                                </template>
+                                <template lwc:elseif={isLogoText}>
+                                    <span class="logo-text">{headerConfig.logoText}</span>
+                                </template>
+                                <template lwc:elseif={isLogoBoth}>
+                                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                        <img src={headerConfig.logoSrc} alt={headerConfig.logoAlt}
+                                            style="max-height: 40px; width: auto;" />
+                                        <span class="logo-text">{headerConfig.logoText}</span>
+                                    </div>
+                                </template>
+                            </div>
+                            <nav class="header-nav">
+                                <ul>
+                                    <template for:each={headerConfig.navLinks} for:item="link">
+                                        <li key={link.id}><a href="#">{link.label}</a></li>
+                                    </template>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="canvas-container" style={canvasStyle} ondragover={handleDragOver}
+                        ondrop={handleCanvasDrop}>
+
+                        <template lwc:if={isEmpty}>
+                            <div class="empty-state">
+                                <h3>Start Building</h3>
+                                <p>Drag and drop components from the left panel</p>
+                            </div>
+                        </template>
+
+                        <template for:each={componentList} for:item="comp" for:index="index">
+                            <div key={comp.id} class={comp.containerClass} style={comp.wrapperStyle} draggable="true"
+                                data-index={index} data-id={comp.id} ondragstart={handleItemDragStart}
+                                ondragover={handleItemDragOver} ondragleave={handleItemDragLeave}
+                                ondrop={handleItemDrop} onclick={handleComponentSelect}>
+
+                                <!-- Selection/Hover Overlay -->
+                                <div class="component-overlay">
+                                    <span class="component-label">{comp.type}</span>
+                                    <div class="component-controls">
+                                        <button class="control-btn" title="Move Up" data-index={index}
+                                            onclick={handleMoveUp}>
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M12 19V5M5 12l7-7 7 7"></path>
+                                            </svg>
+                                        </button>
+                                        <button class="control-btn" title="Move Down" data-index={index}
+                                            onclick={handleMoveDown}>
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M12 5v14M5 12l7 7 7-7"></path>
+                                            </svg>
+                                        </button>
+                                        <button class="control-btn delete-btn" title="Remove component"
+                                            data-index={index} onclick={handleComponentDeleteWrapper}>
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M18 6L6 18M6 6l12 12"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Hero Component -->
+                                <template lwc:if={comp.isHero}>
+                                    <components-hero title={comp.props.title} subtitle={comp.props.subtitle}
+                                        cta-text={comp.props.ctaText} cta-secondary-text={comp.props.ctaSecondaryText}
+                                        background-image={comp.props.backgroundImage} text-color={comp.props.textColor}>
+                                    </components-hero>
+                                </template>
+
+                                <!-- Features Component -->
+                                <template lwc:if={comp.isFeatures}>
+                                    <components-features title={comp.props.title}></components-features>
+                                </template>
+
+                                <!-- Footer Component -->
+                                <template lwc:if={comp.isFooter}>
+                                    <components-footer copyright={comp.props.copyright}></components-footer>
+                                </template>
+
+                                <!-- Text Component -->
+                                <template lwc:if={comp.isText}>
+                                    <components-text-block heading={comp.props.heading}
+                                        content={comp.props.content}></components-text-block>
+                                </template>
+
+                                <!-- Image Component -->
+                                <template lwc:if={comp.isImage}>
+                                    <components-image-block src={comp.props.src} alt={comp.props.alt}
+                                        caption={comp.props.caption}></components-image-block>
+                                </template>
+
+                                <!-- Card Component -->
+                                <template lwc:if={comp.isCard}>
+                                    <components-card-block title={comp.props.title} content={comp.props.content}
+                                        action={comp.props.action}></components-card-block>
+                                </template>
+
+                            </div>
+                        </template>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Notification Toast -->
+        <div if:true={notification.show} class={notificationClass}>
+            {notification.message}
+        </div>
+    </div>
+</template>

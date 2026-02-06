@@ -1,0 +1,8 @@
+<template>
+    <figure class="image-block">
+        <img src={src} alt={alt} class="img-responsive" />
+        <template lwc:if={caption}>
+            <figcaption>{caption}</figcaption>
+        </template>
+    </figure>
+</template>

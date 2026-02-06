@@ -1,0 +1,39 @@
+PROJECT CONTEXT:
+Framework: Lightning Web Runtime (LWR)
+Component System: Lightning Web Components (LWC)
+CSS Architecture: Custom CSS variables, scoped styles.
+Backend: Node.js
+
+REQUEST FORMAT:
+
+[OBJECTIVE]
+1. Fix the Typography issue where selected fonts are not being applied to the canvas or preview.
+2. Add more fonts from Google Fonts.
+3. **IMPORTANT**: Do NOT use CDNs. Download the font files (WOFF/WOFF2) and install them locally in the project.
+
+[AFFECTED AREAS]
+- src/modules/custom/sidePanel/sidePanel.js (Font selection logic)
+- src/modules/custom/sidePanel/sidePanel.html (Dropdown options)
+- Assets/Fonts directory (New directory needed for font files)
+- Global CSS or builder CSS (To define @font-face rules)
+
+[CURRENT BEHAVIOR]
+- Selecting a font in the "Typography" section of the side panel updates the internal state variables, but the visual appearance of the text on the Canvas and Preview does not change.
+- The project likely lacks the `@font-face` definitions or the actual font files to render non-system fonts.
+
+[DESIRED BEHAVIOR]
+1. **Local Font Support**:
+   - Download a set of popular Google Fonts (e.g., Roboto, Open Sans, Lato, Montserrat, Poppins, Inter).
+   - Place them in a static assets folder (e.g., `src/assets/fonts` or `public/assets/fonts`).
+   - Create a CSS file (e.g., `fonts.css`) with standard `@font-face` definitions for these fonts.
+2. **Apply Fonts**:
+   - Ensure that when a user selects a font, the correct CSS variable (e.g., `--s-font-family-body`, `--s-font-family-heading`) is updated and effectively changes the font on the Canvas.
+3. **Expanded Selection**:
+   - Update the `fontOptions` list in `sidePanel.js` to include the newly added local fonts.
+
+[SPECIFIC REQUIREMENTS]
+- self-hosted fonts only.
+- Must support WOFF2 format for best performance.
+
+[ATTACHMENTS/REFERENCES]
+- See attached screenshot of the Typography section in Side Panel.

@@ -1,0 +1,187 @@
+{
+  "sites": [
+    {
+      "id": "site_KuKJn6vQrAu0uJRquRDdj",
+      "name": "My LWR Site",
+      "domain": "localhost:3000",
+      "createdAt": "2026-01-21T07:27:30.091Z",
+      "theme": {
+        "colors": {
+          "primary": "#700000",
+          "background": "#fbefef",
+          "text": "#420000"
+        },
+        "typography": {
+          "primary": "Roboto",
+          "heading": "Roboto"
+        }
+      }
+    }
+  ],
+  "pages": [
+    {
+      "id": "page-1",
+      "siteId": "site_KuKJn6vQrAu0uJRquRDdj",
+      "title": "Untitled Page",
+      "slug": "/",
+      "isPublished": true,
+      "order": 0,
+      "metadata": {
+        "createdAt": "2026-01-27T11:28:32.528Z",
+        "updatedAt": "2026-01-27T11:28:32.571Z"
+      },
+      "name": "Untitled Page"
+    },
+    {
+      "id": "page_zz-v_l00dMY0sOIBKNEaM",
+      "siteId": "site_KuKJn6vQrAu0uJRquRDdj",
+      "title": "Untitled Page",
+      "slug": "/page-2",
+      "isPublished": true,
+      "order": 1,
+      "metadata": {
+        "createdAt": "2026-01-21T12:13:03.766Z",
+        "updatedAt": "2026-01-21T12:13:03.772Z"
+      },
+      "name": "Untitled Page"
+    },
+    {
+      "id": "page_su9rkYhRXASgF33kuPTH0",
+      "siteId": "site_KuKJn6vQrAu0uJRquRDdj",
+      "title": "Untitled Page",
+      "slug": "/page-3",
+      "isPublished": true,
+      "order": 2,
+      "metadata": {
+        "createdAt": "2026-01-22T04:32:18.344Z",
+        "updatedAt": "2026-01-22T04:32:18.375Z"
+      },
+      "name": "Untitled Page"
+    },
+    {
+      "id": "page_M0g4cIae3vY906bUxU6T-",
+      "siteId": "site_KuKJn6vQrAu0uJRquRDdj",
+      "title": "Page 4",
+      "slug": "/page-4",
+      "isPublished": true,
+      "order": 3,
+      "metadata": {
+        "createdAt": "2026-01-27T09:29:14.660Z",
+        "updatedAt": "2026-01-27T09:29:14.660Z"
+      }
+    }
+  ],
+  "components": [
+    {
+      "id": "cmp_oEhYjAEv9jZbjw2ZFnPcK",
+      "pageId": "page_zz-v_l00dMY0sOIBKNEaM",
+      "type": "hero",
+      "order": 0,
+      "props": {
+        "title": "Page 2",
+        "subtitle": "Start building your new page"
+      }
+    },
+    {
+      "id": "1768997580921",
+      "pageId": "page_zz-v_l00dMY0sOIBKNEaM",
+      "type": "hero",
+      "order": 1,
+      "props": {
+        "title": "New Hero Section",
+        "subtitle": "Subtitle goes here"
+      }
+    },
+    {
+      "id": "1768997582440",
+      "pageId": "page_zz-v_l00dMY0sOIBKNEaM",
+      "type": "footer",
+      "order": 2,
+      "props": {
+        "copyright": "© 2026 LWR Site Builder"
+      }
+    },
+    {
+      "id": "cmp_iVURXzb91BB23fphXFX-T",
+      "pageId": "page_su9rkYhRXASgF33kuPTH0",
+      "type": "hero",
+      "order": 0,
+      "props": {
+        "title": "Page 3",
+        "subtitle": "Start building your new page"
+      },
+      "styles": {
+        "backgroundColor": "transparent",
+        "color": "inherit",
+        "borderColor": "transparent"
+      }
+    },
+    {
+      "id": "1769056314068",
+      "pageId": "page_su9rkYhRXASgF33kuPTH0",
+      "type": "hero",
+      "order": 1,
+      "props": {
+        "title": "New Hero Section",
+        "subtitle": "Subtitle goes here"
+      },
+      "styles": {
+        "backgroundColor": "#ff0000"
+      }
+    },
+    {
+      "id": "cmp_J9_dPo1_3_7ZCOiGW-9T1",
+      "pageId": "page_M0g4cIae3vY906bUxU6T-",
+      "type": "hero",
+      "order": 0,
+      "props": {
+        "title": "Page 4",
+        "subtitle": "Start building your new page"
+      }
+    },
+    {
+      "id": "1769499140501",
+      "pageId": "page-1",
+      "type": "hero",
+      "order": 0,
+      "props": {
+        "title": "TESTING NEW HEADLINE 123",
+        "subtitle": "Subtitle goes here",
+        "ctaText": "START NOW",
+        "ctaSecondaryText": "View Demo",
+        "backgroundImage": "https://images.unsplash.com/photo-1557683316-973673baf926?w=1200",
+        "textColor": "#fbefef"
+      }
+    },
+    {
+      "id": "1769499142388",
+      "pageId": "page-1",
+      "type": "features",
+      "order": 1,
+      "props": {
+        "title": "Features",
+        "items": []
+      }
+    },
+    {
+      "id": "1769499150412",
+      "pageId": "page-1",
+      "type": "image",
+      "order": 2,
+      "props": {
+        "src": "",
+        "alt": "Placeholder Image",
+        "caption": "Image Caption"
+      }
+    },
+    {
+      "id": "1769499153092",
+      "pageId": "page-1",
+      "type": "footer",
+      "order": 3,
+      "props": {
+        "copyright": "© 2026 LWR Site Builder"
+      }
+    }
+  ]
+}

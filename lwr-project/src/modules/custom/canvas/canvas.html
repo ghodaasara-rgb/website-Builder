@@ -1,0 +1,51 @@
+<template>
+    <div class="canvas-area">
+        <div class="canvas-viewport">
+            <div class="canvas-container" ondragover={handleDragOver} ondrop={handleDrop}>
+
+                <template lwc:if={isEmpty}>
+                    <div class="empty-state">
+                        Drag components here
+                    </div>
+                </template>
+
+                <template for:each={components} for:item="comp" for:index="index">
+                    <div key={comp.id} class={comp.containerClass} draggable="true" data-index={index}
+                        ondragstart={handleItemDragStart} ondragover={handleItemDragOver} ondrop={handleItemDrop}
+                        onclick={handleComponentClick}>
+                        <button class="delete-btn" title="Remove component" data-index={index} onclick={handleDelete}>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path
+                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                </path>
+                            </svg>
+                        </button>
+                        <template lwc:if={comp.isHero}>
+                            <custom-hero title={comp.props.title} subtitle={comp.props.subtitle}></custom-hero>
+                        </template>
+                        <template lwc:if={comp.isFeatures}>
+                            <custom-features></custom-features>
+                        </template>
+                        <template lwc:if={comp.isFooter}>
+                            <custom-footer></custom-footer>
+                        </template>
+                        <template lwc:if={comp.isText}>
+                            <custom-text-block content={comp.props.content}></custom-text-block>
+                        </template>
+                        <template lwc:if={comp.isImage}>
+                            <custom-image-block src={comp.props.src} alt={comp.props.alt}
+                                caption={comp.props.caption}></custom-image-block>
+                        </template>
+                        <template lwc:if={comp.isCard}>
+                            <custom-card-block title={comp.props.title} content={comp.props.content}
+                                action={comp.props.action}></custom-card-block>
+                        </template>
+                    </div>
+                </template>
+
+            </div>
+        </div>
+    </div>
+</template>

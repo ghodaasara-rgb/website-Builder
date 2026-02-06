@@ -1,0 +1,13 @@
+{
+    "outputDirectory": "site",
+    "rewrites": [
+        {
+            "source": "/api/:match*",
+            "destination": "https://backend-six-xi-72.vercel.app/api/:match*"
+        },
+        {
+            "source": "/preview/:match*",
+            "destination": "/preview"
+        }
+    ]
+}

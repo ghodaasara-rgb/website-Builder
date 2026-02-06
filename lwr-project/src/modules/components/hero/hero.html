@@ -1,0 +1,20 @@
+<template>
+    <section class="container" style={sectionStyle}>
+        <div class="grid">
+            <div class="col-span-12" style="text-align: center; z-index: 1; position: relative;">
+                <h1 style={headlineStyle}>
+                    {title}
+                </h1>
+                <p style={subtitleStyle}>
+                    {subtitle}
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <a href="#" class="btn btn--primary btn--lg">
+                        {ctaText}
+                    </a>
+                    <a href="#" class="btn btn--secondary btn--lg">{ctaSecondaryText}</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</template>

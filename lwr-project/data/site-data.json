@@ -1,0 +1,45 @@
+{
+  "version": "1.0.0",
+  "pages": [
+    {
+      "id": "page-1",
+      "name": "Home",
+      "slug": "/",
+      "layout": {
+        "sections": [
+          {
+            "id": "1768979280920",
+            "type": "hero",
+            "properties": {
+              "title": "New Hero Section",
+              "subtitle": "Subtitle goes here"
+            },
+            "rows": []
+          },
+          {
+            "id": "1768979282088",
+            "type": "features",
+            "properties": {
+              "title": "Features",
+              "items": []
+            },
+            "rows": []
+          },
+          {
+            "id": "1768979283857",
+            "type": "footer",
+            "properties": {
+              "copyright": "© 2026 LWR Site Builder"
+            },
+            "rows": []
+          }
+        ]
+      },
+      "metadata": {
+        "createdAt": "2026-01-21T07:08:36.310Z",
+        "updatedAt": "2026-01-21T07:08:36.314Z"
+      }
+    }
+  ],
+  "activePageId": "page-1"
+}

@@ -1,0 +1,14 @@
+/* ==========================================================================
+   TENANT: GLOBEX
+   Override: data-tenant="globex"
+   ========================================================================== */
+
+[data-tenant="globex"] {
+  /* Globex Brand: Purple */
+  --s-bg-primary: #9333ea; /* purple-600 */
+  --s-bg-primary-hover: #7e22ce; /* purple-700 */
+  --s-text-on-primary: #ffffff;
+
+  /* Focus Ring */
+  --s-ring-color: rgba(147, 51, 234, 0.4);
+}

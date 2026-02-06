@@ -1,0 +1,46 @@
+/* ==========================================================================
+   COMPONENT: EMPTY STATE
+   Contract: Consumes strictly --s-* tokens.
+   ========================================================================== */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  text-align: center;
+  background-color: var(
+    --s-bg-surface
+  ); /* or transparent depending on context */
+  border-radius: var(--s-radius-control);
+  /* border: 1px dashed var(--s-border-default); Optional styled dashed border */
+}
+
+.empty-state-icon {
+  margin-bottom: 1rem;
+  color: var(--s-text-disabled);
+  width: 3rem;
+  height: 3rem;
+}
+
+.empty-state-title {
+  margin: 0 0 0.5rem 0;
+  font-family: var(--s-font-family-body);
+  font-size: 1.125rem;
+  font-weight: var(--s-font-weight-semibold);
+  color: var(--s-text-primary);
+}
+
+.empty-state-description {
+  margin: 0 0 1.5rem 0;
+  font-family: var(--s-font-family-body);
+  font-size: 0.875rem;
+  color: var(--s-text-secondary);
+  max-width: 20rem;
+}
+
+.empty-state-actions {
+  display: flex;
+  gap: 0.75rem;
+}

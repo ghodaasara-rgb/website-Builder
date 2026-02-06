@@ -1,0 +1,116 @@
+{
+  "bundles": {
+    "custom/dashboard|v/1_0_0": {
+      "version": "1.0.0",
+      "path": "/1/bundle/esm/l/en-US/bi/0/module/mi/custom/dashboard/v/1_0_0/s/sha256-oa8Xv2df22eftKOy6z5YponUV3nK22IWG0WD5Z8qMX0/bundle_custom_dashboard.js",
+      "includedModules": [],
+      "imports": [
+        "lwc|v/8_28_0"
+      ],
+      "dynamicImports": [],
+      "integrity": "sha256-oa8Xv2df22eftKOy6z5YponUV3nK22IWG0WD5Z8qMX0="
+    },
+    "@lwrjs/app-service/dashboard/module/esm|v/0_21_4": {
+      "version": "0.21.4",
+      "path": "/1/bundle/esm/l/en-US/bi/0/module/mi/@lwrjs/app-service/dashboard/module/esm/v/0_21_4/s/sha256--Y68hd-l03lfX9_5GWNaowanBzcwBSMqig-x9kqP5oY/bundle_@lwrjs_app-service_dashboard_module_esm.js",
+      "includedModules": [],
+      "imports": [
+        "lwr/esmLoader|v/0_21_4",
+        "lwr/profiler|v/0_21_4",
+        "lwc|v/8_28_0"
+      ],
+      "dynamicImports": [],
+      "integrity": "sha256-+Y68hd+l03lfX9/5GWNaowanBzcwBSMqig+x9kqP5oY="
+    },
+    "lwc|v/8_28_0": {
+      "version": "8.28.0",
+      "path": "/1/bundle/esm/l/en-US/bi/0/module/mi/lwc/v/8_28_0/s/sha256-YEjxo0QDCp_Ri6v5gTkCFurICNw6jRY4sdZ3D70_fxc/bundle_lwc.js",
+      "includedModules": [],
+      "imports": [],
+      "dynamicImports": [],
+      "integrity": "sha256-YEjxo0QDCp/Ri6v5gTkCFurICNw6jRY4sdZ3D70/fxc="
+    },
+    "lwr/esmLoader|v/0_21_4": {
+      "version": "0.21.4",
+      "path": "/1/bundle/esm/l/en-US/bi/0/module/mi/lwr/esmLoader/v/0_21_4/s/sha256-XZ3-fTIQeMpr-t515p72MK4vr6gSnXsH3O_YELtRaFw/bundle_lwr_esmLoader.js",
+      "includedModules": [],
+      "imports": [],
+      "dynamicImports": [],
+      "integrity": "sha256-XZ3+fTIQeMpr+t515p72MK4vr6gSnXsH3O/YELtRaFw="
+    },
+    "lwr/profiler|v/0_21_4": {
+      "version": "0.21.4",
+      "path": "/1/bundle/esm/l/en-US/bi/0/module/mi/lwr/profiler/v/0_21_4/s/sha256-kGLXJohj797McyfBP40zJ-_7G1vXcR4obQNMGxQNgGk/bundle_lwr_profiler.js",
+      "includedModules": [],
+      "imports": [],
+      "dynamicImports": [],
+      "integrity": "sha256-kGLXJohj797McyfBP40zJ+/7G1vXcR4obQNMGxQNgGk="
+    },
+    "@lwrjs/app-service/editor/module/esm|v/0_21_4": {
+      "version": "0.21.4",
+      "path": "/1/bundle/esm/l/en-US/bi/0/module/mi/@lwrjs/app-service/editor/module/esm/v/0_21_4/s/sha256-UtkYvQkztvaww0Y8HALt5KFXs4nXzTenlogUYli3Zoc/bundle_@lwrjs_app-service_editor_module_esm.js",
+      "includedModules": [],
+      "imports": [
+        "lwr/esmLoader|v/0_21_4",
+        "lwr/profiler|v/0_21_4",
+        "lwc|v/8_28_0"
+      ],
+      "dynamicImports": [],
+      "integrity": "sha256-UtkYvQkztvaww0Y8HALt5KFXs4nXzTenlogUYli3Zoc="
+    },
+    "custom/builder|v/1_0_0": {
+      "version": "1.0.0",
+      "path": "/1/bundle/esm/l/en-US/bi/0/module/mi/custom/builder/v/1_0_0/s/sha256-6hNcwFYLLMbPaKfjlwDoNgn035JKZqmWcHMbPc0GulU/bundle_custom_builder.js",
+      "includedModules": [],
+      "imports": [
+        "lwc|v/8_28_0"
+      ],
+      "dynamicImports": [],
+      "integrity": "sha256-6hNcwFYLLMbPaKfjlwDoNgn035JKZqmWcHMbPc0GulU="
+    },
+    "@lwrjs/app-service/preview/module/esm|v/0_21_4": {
+      "version": "0.21.4",
+      "path": "/1/bundle/esm/l/en-US/bi/0/module/mi/@lwrjs/app-service/preview/module/esm/v/0_21_4/s/sha256-jNKxqLPIbZbJDuw00r049A9kNEifvFd03FVqXRO1kBA/bundle_@lwrjs_app-service_preview_module_esm.js",
+      "includedModules": [],
+      "imports": [
+        "lwr/esmLoader|v/0_21_4",
+        "lwr/profiler|v/0_21_4",
+        "lwc|v/8_28_0"
+      ],
+      "dynamicImports": [],
+      "integrity": "sha256-jNKxqLPIbZbJDuw00r049A9kNEifvFd03FVqXRO1kBA="
+    },
+    "custom/preview|v/1_0_0": {
+      "version": "1.0.0",
+      "path": "/1/bundle/esm/l/en-US/bi/0/module/mi/custom/preview/v/1_0_0/s/sha256-OxaFodeUPx2ImXDZ7KGVKZ4v5sz0wBT3lZ05NcG8_HY/bundle_custom_preview.js",
+      "includedModules": [],
+      "imports": [
+        "lwc|v/8_28_0"
+      ],
+      "dynamicImports": [],
+      "integrity": "sha256-OxaFodeUPx2ImXDZ7KGVKZ4v5sz0wBT3lZ05NcG8/HY="
+    },
+    "@lwrjs/app-service/schema_manager/module/esm|v/0_21_4": {
+      "version": "0.21.4",
+      "path": "/1/bundle/esm/l/en-US/bi/0/module/mi/@lwrjs/app-service/schema_manager/module/esm/v/0_21_4/s/sha256-qrpAwLOtKGNJ396aa68ktq1_fCW8159g1ZMFoJ21p3s/bundle_@lwrjs_app-service_schema_manager_module_esm.js",
+      "includedModules": [],
+      "imports": [
+        "lwr/esmLoader|v/0_21_4",
+        "lwr/profiler|v/0_21_4",
+        "lwc|v/8_28_0"
+      ],
+      "dynamicImports": [],
+      "integrity": "sha256-qrpAwLOtKGNJ396aa68ktq1/fCW8159g1ZMFoJ21p3s="
+    },
+    "custom/schemaManager|v/1_0_0": {
+      "version": "1.0.0",
+      "path": "/1/bundle/esm/l/en-US/bi/0/module/mi/custom/schemaManager/v/1_0_0/s/sha256-gAH2jTzGsEFZcbr_5b5Y978bfKOibIzzopt-uXgHSEI/bundle_custom_schemaManager.js",
+      "includedModules": [],
+      "imports": [
+        "lwc|v/8_28_0"
+      ],
+      "dynamicImports": [],
+      "integrity": "sha256-gAH2jTzGsEFZcbr/5b5Y978bfKOibIzzopt+uXgHSEI="
+    }
+  }
+}

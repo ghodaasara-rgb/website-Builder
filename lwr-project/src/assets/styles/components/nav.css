@@ -1,0 +1,109 @@
+/* ==========================================================================
+   COMPONENT: NAVIGATION (Global, Side, App Switcher)
+   Contract: Consumes strictly --s-* tokens.
+   ========================================================================== */
+
+/* GLOBAL HEADER NAV */
+.global-nav {
+  display: flex;
+  align-items: center;
+  height: 3.5rem; /* ~56px */
+  padding: 0 1rem;
+  background-color: var(--s-bg-surface);
+  border-bottom: var(--s-border-width-default) solid var(--s-border-default);
+}
+
+.global-nav-brand {
+  font-weight: var(--s-font-weight-bold);
+  font-size: 1.125rem;
+  color: var(--s-text-primary);
+  margin-right: 2rem;
+  text-decoration: none;
+}
+
+.global-nav-items {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.global-nav-link {
+  color: var(--s-text-secondary);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: var(--s-font-weight-medium);
+  padding: 0.5rem;
+  border-radius: var(--s-radius-control);
+  transition: all var(--s-motion-duration) var(--s-motion-ease);
+}
+
+.global-nav-link:hover {
+  background-color: var(--s-bg-surface-hover);
+  color: var(--s-text-primary);
+}
+
+.global-nav-link[aria-current="page"] {
+  color: var(--s-text-primary);
+  background-color: var(--s-bg-surface-hover);
+}
+
+/* SIDE NAV */
+.side-nav {
+  width: 16rem; /* 256px */
+  height: 100%;
+  background-color: var(--s-bg-page); /* or surface? */
+  border-right: var(--s-border-width-default) solid var(--s-border-default);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+
+.side-nav-group {
+  margin-bottom: 1.5rem;
+}
+
+.side-nav-header {
+  padding: 0 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--s-text-secondary);
+  font-weight: var(--s-font-weight-semibold);
+  letter-spacing: 0.05em;
+}
+
+.side-nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--s-text-secondary);
+  text-decoration: none;
+  font-size: 0.875rem;
+  border-left: 3px solid transparent;
+  transition: all var(--s-motion-duration) var(--s-motion-ease);
+}
+
+.side-nav-link:hover {
+  background-color: var(--s-bg-surface-hover);
+  color: var(--s-text-primary);
+}
+
+.side-nav-link[aria-current="page"] {
+  background-color: var(--s-bg-surface); /* Highlight */
+  color: var(--s-bg-primary); /* Active Color */
+  border-left-color: var(--s-bg-primary);
+  font-weight: var(--s-font-weight-medium);
+}
+
+/* APP SWITCHER (Simple Button/Dropdown indicator) */
+.app-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: var(--s-radius-control);
+  cursor: pointer;
+  color: var(--s-text-primary);
+}
+.app-switcher:hover {
+  background-color: var(--s-bg-surface-hover);
+}

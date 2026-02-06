@@ -1,0 +1,17 @@
+.text-block-wrapper {
+  padding: 2rem 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.text-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--s-text-heading);
+}
+
+.text-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--s-text-body);
+}

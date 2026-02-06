@@ -1,0 +1,57 @@
+/* ==========================================================================
+   LAYOUT: TABS
+   ========================================================================== */
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs-list {
+  display: flex;
+  border-bottom: var(--s-border-width-default) solid var(--s-border-default);
+  gap: 0; /* Connected tabs often have no gap or small gap? */
+  overflow-x: auto;
+}
+
+.tab-trigger {
+  padding: 0.75rem 1.25rem;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent; /* Active state width preference? Use calc? or leave 2px as component specific style? I'll leave 2px or map to ring-width (3px)? 2px is fine for bottom border usually */
+  font-family: var(--s-font-family-body);
+  font-size: 0.875rem;
+  color: var(--s-text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--s-motion-duration) var(--s-motion-ease);
+}
+
+.tab-trigger:hover {
+  color: var(--s-text-primary);
+}
+
+.tab-trigger[aria-selected="true"] {
+  color: var(--s-bg-primary);
+  border-bottom-color: var(--s-bg-primary);
+  font-weight: var(--s-font-weight-medium);
+}
+
+.tab-content {
+  padding: 1rem 0;
+  display: none;
+}
+
+.tab-content.is-active {
+  display: block;
+  animation: fadeIn var(--s-motion-duration) var(--s-motion-ease);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

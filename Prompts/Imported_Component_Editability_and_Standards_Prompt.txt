@@ -1,0 +1,47 @@
+PROJECT CONTEXT:
+Framework: Lightning Web Runtime (LWR)
+Component System: Lightning Web Components (LWC)
+CSS Architecture: Custom CSS variables, scoped styles.
+Backend: Node.js (Express/MySQL)
+
+REQUEST FORMAT:
+
+[OBJECTIVE]
+1.  **Make Imported Components Editable**: Ensure that custom components imported via the builder interface can be edited in the Side Panel (Properties tab) just like native components. This means exposing properties (text, colors, numbers, toggles) defined in the component's metadata.
+2.  **Define Creation Standards**: Establish a strict guide/standard on how developers should structure and write LWC components for this project so they are compatible with the import system and the side panel editor.
+
+[AFFECTED AREAS]
+-   **Frontend**:
+    -   `ComponentRegistry.js` (or equivalent loader): Needs to parse metadata from imported components.
+    -   `SidePanel.js` / Properties Tab: Needs to dynamically render inputs based on the parsed metadata.
+-   **Backend**:
+    -   Import Endpoint: May need to validate or extract the metadata file (`js-meta.xml` or `component.json`) during upload.
+-   **Documentation**:
+    -   A new "Developer Guide" or "Component Standard" document.
+
+[CURRENT BEHAVIOR]
+-   Imported components (from the previous task) might load valid HTML/JS, but the Side Panel likely shows no properties or only generic ones.
+-   There is no documented standard for how a generic LWC should be built to ensure it works with *this* specific builder's property editor.
+
+[DESIRED BEHAVIOR]
+
+1.  **Side Panel Editability**:
+    -   When an imported component is selected on the canvas, the Properties tab should inspect its metadata.
+    -   For every exposed property (e.g., `@api title`), render the appropriate input field (Text, Color Picker, Slider, Toggle).
+    -   Updates to these inputs should reactively update the component instance on the canvas.
+
+2.  **Component Creation Standard (The "Contract")**:
+    -   Define the required file structure (e.g., `myComponent/myComponent.html`, `myComponent.js`, `myComponent.js-meta.xml`).
+    -   **Metadata Schema**: Specify exactly which tags/properties in `js-meta.xml` control the side panel.
+        -   Example: `<property name="title" type="String" label="Card Title" description="Title of the card" />`
+    -   **CSS Variables**: Define how styles should be exposed. (e.g., Use `--c-text-color` and list it in metadata or a separate `styles.json`?). *Preference: Keep it standard LWC style tokens if possible, or simple CSS vars.*
+    -   **External Dependencies**: Explicitly state that imports from 3rd party libs are restricted or how to handle them.
+
+[SPECIFIC REQUIREMENTS]
+-   **Standard LWC Metadata**: Use the standard `js-meta.xml` format as much as possible to remain compatible with standard Salesforce/LWC tooling, but extend or interpret it for the builder's UI.
+-   **Supported Types**: Ensure the Side Panel supports at least: `String`, `Integer`, `Boolean`, `Color` (maybe via a custom scalar type or annotation).
+-   **Guide Output**: The solution must include a text file or markdown section "How to build components for this project" that can be shared with other developers.
+
+[ATTACHMENTS/REFERENCES]
+-   Reference existing native components (e.g., `Hero`, `Card`) to see how their properties are currently defined in the registry.
+-   Reference the previous `Import Custom LWC` prompt for the upload mechanism.

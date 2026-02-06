@@ -1,0 +1,38 @@
+/* ==========================================================================
+   THEME: LABSCOOP (BioTech / Science)
+   Override: data-theme="labscoop"
+   Ref: labscoop.com
+   ========================================================================== */
+
+[data-theme="labscoop"] {
+  /* Backgrounds: Clean Science Lab White */
+  --s-bg-page: #fdfeff;
+  --s-bg-surface: #ffffff;
+  --s-bg-surface-hover: #f8fafc;
+
+  /* Primary: Cobalt Blue (#3360AD) */
+  --s-bg-primary: #3360ad;
+  --s-bg-primary-hover: #264d8c;
+  --s-text-on-primary: #ffffff;
+
+  /* Accents (Teal/Orange mapped to Semantic Intents if needed, or used as primary variants) */
+  /* We stick to core semantics, but could use Teal for Success/Info if the framework allowed. 
+     For now, we keep strictly to the primary brand color for --s-bg-primary. */
+
+  /* Text: Slate Gray (#474F5C) */
+  --s-text-primary: #474f5c;
+  --s-text-secondary: #6b7280; /* lighter slate */
+  --s-text-disabled: #9ca3af;
+
+  /* Borders: Soft Gray (#E0E0E0) */
+  --s-border-default: #e0e0e0;
+  --s-border-focus: #3360ad;
+  --s-border-width-default: 1px;
+
+  /* Radius: 8px (0.5rem) */
+  --s-radius-control: 0.5rem;
+
+  /* Shadows: Soft/Diffuse */
+  --s-ring-color: rgba(51, 96, 173, 0.2);
+  --s-ring-width: 4px;
+}

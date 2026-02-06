@@ -1,0 +1,38 @@
+PROJECT CONTEXT:
+Framework: Lightning Web Runtime (LWR)
+Component System: Lightning Web Components (LWC)
+CSS Architecture: Custom CSS variables, scoped styles.
+Backend: Node.js
+
+REQUEST FORMAT:
+
+[OBJECTIVE]
+Fix the "Active Brand Set" dropdown in the Side Panel to function correctly. It should load saved themes (Primary, Background, Text colors) when selected. Additionally, implement the "Save as New Smart Set" functionality to save current color settings as a new option in the dropdown.
+
+[AFFECTED AREAS]
+- src/modules/custom/sidePanel/sidePanel.js
+- src/modules/custom/sidePanel/sidePanel.html
+
+[CURRENT BEHAVIOR]
+- The `handleBrandSetChange` method only updates the `selectedBrandSet` property but does not apply any color changes to the UI or state.
+- `brandSetOptions` is a hardcoded list and does not reflect actual saved themes.
+- `handleSaveSmartSet` only logs to the console and does not perform any save operation.
+
+[DESIRED BEHAVIOR]
+1. **Load Themes**: When a user selects a brand set from the dropdown:
+   - Identify the selected theme's configuration (colors, typography).
+   - Update `this.colors` and `this.typography`.
+   - Call `applyTheme()` to reflect changes on the canvas.
+2. **Save New Set**: When "Save as New Smart Set" is clicked:
+   - Prompt the user for a name (or use a default).
+   - Create a new theme object with the current `colors` and `typography`.
+   - Add this new theme to the `brandSetOptions` list.
+   - Select the newly created theme.
+   - Persist the updated list of brand sets (to localStorage or DB) so it remains available on reload.
+
+[SPECIFIC REQUIREMENTS]
+- Ensure standard "Corporate" and "Dark Mode" presets work immediately.
+- Use `localStorage` for persisting the custom brand sets list if DB is not ready, or extended `saveSiteTheme` if applicable.
+
+[ATTACHMENTS/REFERENCES]
+- Reference `sidePanel.js` for existing color handling logic.

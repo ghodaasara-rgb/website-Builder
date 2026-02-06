@@ -1,0 +1,12 @@
+{
+  "id": "page-1",
+  "name": "Home",
+  "slug": "/",
+  "layout": {
+    "sections": []
+  },
+  "metadata": {
+    "createdAt": "2026-01-21T07:18:24.197Z",
+    "updatedAt": "2026-01-21T07:18:24.200Z"
+  }
+}

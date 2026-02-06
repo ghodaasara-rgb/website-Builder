@@ -1,0 +1,84 @@
+<template>
+    <div class="container">
+        <!-- HEADER -->
+        <header class="header">
+            <h1>Schema Engine Manager</h1>
+            <template if:false={selectedObject}>
+                <button onclick={handleCreateObject} class="btn-primary">New Object</button>
+            </template>
+            <template if:true={selectedObject}>
+                <button onclick={handleBack} class="btn-secondary">Back to Objects</button>
+            </template>
+        </header>
+
+        <!-- OBJECT LIST -->
+        <template if:false={selectedObject}>
+            <div class="grid">
+                <template for:each={objects} for:item="obj">
+                    <div key={obj.id} class="card" onclick={handleObjectSelect} data-id={obj.id}>
+                        <h3>{obj.label}</h3>
+                        <p>{obj.api_name}</p>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- OBJECT DETAIL -->
+        <template if:true={selectedObject}>
+            <div class="detail-header">
+                <h2>{selectedObject.label} <small>({selectedObject.api_name})</small></h2>
+                <div class="actions">
+                    <button onclick={openWizard} class="btn-primary">Add Field</button>
+                    <button onclick={toggleFormPreview} class="btn-secondary">
+                        {previewButtonLabel}
+                    </button>
+                </div>
+            </div>
+
+            <div class="content-split">
+                <!-- FIELD LIST -->
+                <div class="field-list">
+                    <h3>Fields ({fields.length})</h3>
+                    <ul>
+                        <template for:each={fields} for:item="f">
+                            <li key={f.id} class="field-item">
+                                <strong>{f.label}</strong>
+                                <span class="badge">{f.data_type}</span>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+
+                <!-- PREVIEW / WIZARD AREA -->
+                <div class="interaction-area">
+
+                    <!-- WIZARD -->
+                    <template if:true={showWizard}>
+                        <div class="modal">
+                            <custom-field-wizard object-id={selectedObject.id} onsuccess={handleWizardSuccess}>
+                            </custom-field-wizard>
+                            <button onclick={closeWizard} class="btn-link">Cancel</button>
+                            <!-- Add close logic if implementation allows -->
+                        </div>
+                    </template>
+
+                    <!-- FORM RENDERER -->
+                    <template if:true={showFormPreview}>
+                        <div class="form-preview">
+                            <h3>Record Creator Preview</h3>
+                            <template for:each={fields} for:item="field">
+                                <custom-dynamic-field key={field.id} field={field} onchange={handleFieldChange}>
+                                </custom-dynamic-field>
+                            </template>
+
+                            <div class="debug-values">
+                                <pre>{jsonValues}</pre>
+                            </div>
+                        </div>
+                    </template>
+
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

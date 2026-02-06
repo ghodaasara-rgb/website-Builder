@@ -1,0 +1,50 @@
+<template>
+    <div class="field-container">
+        <label class="field-label">
+            {field.label}
+            <template if:true={field.is_required}><span class="required">*</span></template>
+        </label>
+
+        <!-- TEXT / EMAIL / URL -->
+        <template if:true={isText}>
+            <input type="text" class="input-control" value={value} oninput={handleChange}
+                required={field.is_required} />
+        </template>
+
+        <!-- NUMBER / CURRENCY -->
+        <template if:true={isNumber}>
+            <input type="number" class="input-control" value={value} oninput={handleChange} step={step}
+                required={field.is_required} />
+        </template>
+
+        <!-- CHECKBOX -->
+        <template if:true={isCheckbox}>
+            <div class="checkbox-wrapper">
+                <input type="checkbox" checked={value} onchange={handleChange} />
+            </div>
+        </template>
+
+        <!-- DATE -->
+        <template if:true={isDate}>
+            <input type="date" class="input-control" value={value} onchange={handleChange}
+                required={field.is_required} />
+        </template>
+
+        <!-- PICKLIST -->
+        <template if:true={isPicklist}>
+            <select class="input-control" onchange={handleChange} required={field.is_required}>
+                <option value="">-- Select --</option>
+                <template for:each={picklistOptions} for:item="opt">
+                    <option key={opt.value} value={opt.value} selected={value}>{opt.label}</option>
+                </template>
+            </select>
+        </template>
+
+        <!-- TEXTAREA -->
+        <template if:true={isTextarea}>
+            <textarea class="input-control" rows="3" oninput={handleChange}
+                required={field.is_required}>{value}</textarea>
+        </template>
+
+    </div>
+</template>

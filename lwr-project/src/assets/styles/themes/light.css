@@ -1,0 +1,27 @@
+/* ==========================================================================
+   THEME: LIGHT
+   ========================================================================== */
+
+[data-theme="light"] {
+  /* Intentional redundancy: Re-asserts defaults to ensure specificity
+     when switching from Dark to Light at runtime. */
+
+  /* Backgrounds */
+  --s-bg-page: var(--p-color-neutral-50);
+  --s-bg-surface: var(--p-color-neutral-0);
+  --s-bg-surface-hover: var(--p-color-neutral-100);
+  --s-bg-primary: var(--p-color-brand-600);
+  --s-bg-primary-hover: var(--p-color-brand-700);
+  --s-bg-danger: var(--p-color-red-500);
+  --s-bg-disabled: var(--p-color-neutral-200);
+
+  /* Text */
+  --s-text-primary: var(--p-color-neutral-900);
+  --s-text-secondary: var(--p-color-neutral-500);
+  --s-text-on-primary: var(--p-color-neutral-0);
+  --s-text-disabled: var(--p-color-neutral-400);
+
+  /* Borders */
+  --s-border-default: var(--p-color-neutral-200);
+  --s-border-focus: var(--p-color-brand-500);
+}

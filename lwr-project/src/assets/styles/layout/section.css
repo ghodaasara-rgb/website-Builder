@@ -1,0 +1,28 @@
+/* ==========================================================================
+   LAYOUT: SECTION & PAGE
+   ========================================================================== */
+
+.page {
+  min-height: 100vh;
+  background-color: var(--s-bg-page);
+  display: flex;
+  flex-direction: column;
+}
+
+.section {
+  padding-top: var(--s-space-container);
+  padding-bottom: var(--s-space-container);
+}
+
+.section--hero {
+  background-color: var(--s-bg-surface);
+  border-bottom: var(--s-border-width-default) solid var(--s-border-default);
+  padding: 4rem 0;
+}
+
+.divider {
+  height: var(--s-border-width-default);
+  background-color: var(--s-border-default);
+  margin: var(--s-space-container) 0;
+  border: none;
+}

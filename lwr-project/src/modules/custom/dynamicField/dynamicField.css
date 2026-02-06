@@ -1,0 +1,45 @@
+.field-container {
+  margin-bottom: 1rem;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #3e3e3c;
+  font-size: 0.875rem;
+}
+
+.required {
+  color: #ea001e;
+  margin-left: 0.125rem;
+}
+
+.input-control {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #080707;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #dddbda;
+  border-radius: 0.25rem;
+  transition: border 0.1s linear, background-color 0.1s linear;
+}
+
+.input-control:focus {
+  outline: 0;
+  border-color: #1589ee;
+  box-shadow: 0 0 3px #0070d2;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  height: 2.25rem;
+}
+
+textarea.input-control {
+  resize: vertical;
+}

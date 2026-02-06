@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../document"
+		},
+		{
+			"path": "../lwr-project"
+		},
+		{
+			"path": "../Prompts"
+		}
+	]
+}

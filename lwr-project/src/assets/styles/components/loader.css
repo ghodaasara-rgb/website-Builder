@@ -1,0 +1,32 @@
+/* ==========================================================================
+   COMPONENT: LOADER
+   Contract: Consumes strictly --s-* tokens.
+   ========================================================================== */
+
+.loader {
+  display: inline-block;
+  width: calc(var(--s-size-icon) * 1.5); /* or need --s-size-loader-md */
+  height: calc(var(--s-size-icon) * 1.5);
+  border: 2px solid var(--s-border-default);
+  border-right-color: var(--s-bg-primary); /* Accent color */
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+.loader--sm {
+  width: var(--s-size-icon-sm);
+  height: var(--s-size-icon-sm);
+  border-width: 2px;
+}
+
+.loader--lg {
+  width: var(--s-size-icon-lg);
+  height: var(--s-size-icon-lg);
+  border-width: 3px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

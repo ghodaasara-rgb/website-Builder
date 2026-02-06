@@ -1,0 +1,111 @@
+/* :host style removed for light dom */
+/* :host {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  height: 100%;
+} */
+.canvas-area {
+  height: 100%;
+  /* Added from :host */
+  flex: 1;
+  background-color: var(--s-bg-page);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  /* Critical for nested flex scrolling */
+}
+
+.canvas-viewport {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 2rem;
+  /* Ensure flex child scroll works */
+  min-height: 0;
+}
+
+.canvas-container {
+  width: 100%;
+  max-width: 100%;
+  background: var(--s-bg-surface);
+  min-height: 100%;
+  box-shadow: var(--p-shadow-md);
+  padding-bottom: 4rem;
+  margin: 0 auto;
+  position: relative;
+}
+
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  border: 2px dashed var(--s-border-default);
+  margin: 2rem;
+  color: var(--s-text-secondary);
+  border-radius: var(--p-radius-lg);
+}
+
+.builder-block {
+  position: relative;
+  border: 2px solid transparent;
+  transition: border-color var(--s-motion-duration) var(--s-motion-ease),
+    box-shadow var(--s-motion-duration) var(--s-motion-ease);
+}
+
+.builder-block:hover {
+  border-color: var(--s-border-focus);
+  box-shadow: 0 0 0 3px var(--s-ring-color);
+  z-index: 10;
+}
+
+.builder-block.selected {
+  border-color: var(--s-bg-primary);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+  z-index: 10;
+}
+
+.builder-block:focus-within {
+  outline: var(--s-ring-width) solid var(--s-border-focus);
+  outline-offset: 2px;
+}
+
+.builder-block .delete-btn {
+  display: none;
+  position: absolute;
+  top: var(--p-space-2);
+  right: var(--p-space-2);
+  background: var(--s-bg-surface);
+  border: 2px solid var(--s-bg-danger);
+  color: var(--s-bg-danger);
+  border-radius: var(--p-radius-md);
+  cursor: pointer;
+  padding: var(--p-space-1);
+  z-index: 20;
+  transition: all var(--s-motion-duration) var(--s-motion-ease);
+  font-weight: var(--s-font-weight-medium);
+}
+
+.builder-block:hover .delete-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.builder-block .delete-btn:hover,
+.builder-block .delete-btn:focus {
+  background: var(--s-bg-danger);
+  color: var(--s-text-on-primary);
+  outline: var(--s-ring-width) solid var(--s-border-focus);
+  outline-offset: 2px;
+}
+
+.builder-block.drop-target {
+  border-bottom: 3px solid var(--s-bg-primary);
+  background-color: var(--s-bg-info-subtle);
+}

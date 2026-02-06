@@ -1,0 +1,19 @@
+/* ==========================================================================
+   LAYOUT: STICKY
+   ========================================================================== */
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 40; /* Below overlays (50), above content */
+  background-color: var(--s-bg-surface);
+  border-bottom: var(--s-border-width-default) solid var(--s-border-default);
+}
+
+.sticky-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 40;
+  background-color: var(--s-bg-surface);
+  border-top: var(--s-border-width-default) solid var(--s-border-default);
+}

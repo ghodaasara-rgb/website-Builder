@@ -1,0 +1,27 @@
+PROJECT CONTEXT:
+Framework: Lightning Web Runtime (LWR)
+Component System: Lightning Web Components (LWC)
+CSS Architecture: Custom CSS variables, scoped styles, no external CSS frameworks (unless specified).
+Backend: Node.js (Express/MySQL - if relevant)
+
+REQUEST FORMAT:
+
+[OBJECTIVE]
+(Briefly describe what you want to achieve)
+
+[AFFECTED AREAS]
+(List which components or pages are involved, e.g., Dashboard, Builder, Header)
+
+[CURRENT BEHAVIOR]
+(Describe what is happening now or paste the current code snippet if relevant)
+
+[DESIRED BEHAVIOR]
+(Describe what should happen after the change)
+
+[SPECIFIC REQUIREMENTS]
+- (e.g., "Use existing CSS variables")
+- (e.g., "Must be mobile responsive")
+- (e.g., "Update task.md first")
+
+[ATTACHMENTS/REFERENCES]
+(e.g., "See screenshot attached", "Reference searchbar component")

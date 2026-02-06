@@ -1,0 +1,95 @@
+<template>
+    <div class="preview-container" onclick={handleGlobalClick}>
+
+
+        <div class="preview-content">
+            <template if:true={isLoading}>
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading preview...</p>
+                </div>
+            </template>
+
+            <template if:false={isLoading}>
+                <template if:true={hasPage}>
+                    <div class="page-preview">
+                        <!-- Global Header (Preview Mode) -->
+                        <header class="site-header" style={headerStyle}>
+                            <div class="header-content">
+                                <div class="header-logo">
+                                    <template lwc:if={isLogoImage}>
+                                        <img src={headerConfig.logoSrc} alt={headerConfig.logoAlt} />
+                                    </template>
+                                    <template lwc:elseif={isLogoText}>
+                                        <span class="logo-text">{headerConfig.logoText}</span>
+                                    </template>
+                                    <template lwc:elseif={isLogoBoth}>
+                                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                            <img src={headerConfig.logoSrc} alt={headerConfig.logoAlt}
+                                                style="max-height: 40px; width: auto;" />
+                                            <span class="logo-text">{headerConfig.logoText}</span>
+                                        </div>
+                                    </template>
+                                </div>
+                                <nav class="header-nav">
+                                    <ul>
+                                        <template for:each={headerConfig.navLinks} for:item="link">
+                                            <li key={link.id}><a href={link.url}
+                                                    onclick={handleGlobalClick}>{link.label}</a></li>
+                                        </template>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </header>
+                        <!-- Render sections directly without page name or wrapper loops -->
+                        <template for:each={processedSections} for:item="section">
+                            <div key={section.id} class="preview-section" style={section.wrapperStyle}>
+                                <!-- Render different component types -->
+                                <template if:true={section.isHero}>
+                                    <components-hero title={section.properties.title}
+                                        subtitle={section.properties.subtitle} cta-text={section.properties.ctaText}
+                                        cta-secondary-text={section.properties.ctaSecondaryText}
+                                        background-image={section.properties.backgroundImage}
+                                        text-color={section.properties.textColor}>
+                                    </components-hero>
+                                </template>
+                                <template if:true={section.isFeatures}>
+                                    <components-features title={section.properties.title}
+                                        items={section.properties.items}>
+                                    </components-features>
+                                </template>
+                                <template if:true={section.isFooter}>
+                                    <components-footer copyright={section.properties.copyright}>
+                                    </components-footer>
+                                </template>
+                                <template if:true={section.isText}>
+                                    <components-text-block content={section.properties.content}>
+                                    </components-text-block>
+                                </template>
+                                <template if:true={section.isImage}>
+                                    <components-image-block src={section.properties.src} alt={section.properties.alt}>
+                                    </components-image-block>
+                                </template>
+                                <template if:true={section.isCard}>
+                                    <components-card-block title={section.properties.title}
+                                        description={section.properties.description}>
+                                    </components-card-block>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+
+                <template if:false={hasPage}>
+                    <div class="empty-state">
+                        <h2>Page Not Found</h2>
+                        <p>The requested page could not be found.</p>
+                        <button class="btn-primary" onclick={handleBackToEditor}>
+                            Back to Editor
+                        </button>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </div>
+</template>

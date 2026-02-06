@@ -1,0 +1,53 @@
+/* ==========================================================================
+   LAYOUT: ACCORDION
+   ========================================================================== */
+
+.accordion {
+  border: var(--s-border-width-default) solid var(--s-border-default);
+  border-radius: var(--s-radius-control);
+  overflow: hidden;
+}
+
+.accordion-item {
+  border-bottom: var(--s-border-width-default) solid var(--s-border-default);
+}
+
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+.accordion-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: var(--s-bg-surface);
+  border: none;
+  color: var(--s-text-primary);
+  font-family: var(--s-font-family-body);
+  font-size: 1rem;
+  font-weight: var(--s-font-weight-medium);
+  cursor: pointer;
+  text-align: left;
+}
+
+.accordion-trigger:hover {
+  background-color: var(--s-bg-surface-hover);
+}
+
+.accordion-content {
+  padding: 0;
+  max-height: 0;
+  background-color: var(--s-bg-page); /* Inner content distinct bg? */
+  overflow: hidden;
+  transition:
+    max-height var(--s-motion-duration) var(--s-motion-ease),
+    padding var(--s-motion-duration) var(--s-motion-ease);
+}
+
+.accordion-item.is-open .accordion-content {
+  padding: 1rem;
+  max-height: 100vh; /* Approximate or use JS to set actual height */
+  border-top: var(--s-border-width-default) solid var(--s-border-default);
+}

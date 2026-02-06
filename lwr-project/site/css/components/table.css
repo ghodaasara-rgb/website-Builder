@@ -1,0 +1,74 @@
+/* ==========================================================================
+   COMPONENT: TABLE (DATA GRID)
+   Contract: Consumes strictly --s-* tokens.
+   ========================================================================== */
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  border: var(--s-border-width-default) solid var(--s-border-default);
+  border-radius: var(--s-radius-control);
+  background-color: var(--s-bg-surface);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-family: var(--s-font-family-body);
+  font-size: var(--s-font-size-control);
+}
+
+.table th,
+.table td {
+  padding: var(--s-space-control-padding-y) var(--s-space-control-padding-x);
+  border-bottom: var(--s-border-width-default) solid var(--s-border-default);
+  color: var(--s-text-primary);
+}
+
+.table th {
+  background-color: var(--s-bg-surface-hover); /* Header background */
+  font-weight: var(--s-font-weight-semibold);
+  color: var(--s-text-secondary);
+  text-transform: uppercase;
+  font-size: var(--s-font-size-caption);
+  letter-spacing: 0.05em;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tr:hover td {
+  background-color: var(--s-bg-surface-hover);
+}
+
+/* Sortable Header */
+.table th[aria-sort] {
+  cursor: pointer;
+}
+.table th[aria-sort]:hover {
+  color: var(--s-text-primary);
+}
+
+/* Variants */
+.table--compact th,
+.table--compact td {
+  padding: var(--s-space-control-padding-y) var(--s-space-control-padding-x); /* could use smaller token if existed */
+}
+
+.table--sm th,
+.table--sm td {
+  padding: 0.25rem 0.5rem; /* semantic sm padding? */
+  font-size: var(--s-font-size-caption);
+}
+
+.table--lg th,
+.table--lg td {
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+}
+
+.table--striped tr:nth-child(even) td {
+  background-color: var(--s-bg-page);
+}

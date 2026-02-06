@@ -1,0 +1,97 @@
+<template>
+    <div class="wizard-container">
+        <!-- Error Banner -->
+        <template if:true={error}>
+            <div class="error-banner">
+                {error}
+            </div>
+        </template>
+
+        <!-- Step 1: Type Selection -->
+        <template if:true={isStep1}>
+            <div class="step-header">
+                <h2>Choose Field Type</h2>
+                <p>Select the data type for your new field.</p>
+            </div>
+            <div class="type-grid">
+                <template for:each={fieldTypes} for:item="type">
+                    <div key={type.type} class="type-card" onclick={handleSelectType} data-type={type.type}>
+                        <div class="icon-container">
+                            <!-- TODO: Use lwc-icon or svg -->
+                            <span class="type-icon"></span>
+                        </div>
+                        <div class="type-info">
+                            <h3>{type.label}</h3>
+                            <p>{type.description}</p>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- Step 2: Configuration -->
+        <template if:true={isStep2}>
+            <div class="step-header">
+                <h2>Configure {selectedTypeLabel}</h2>
+            </div>
+            <div class="form-container">
+                <div class="form-group">
+                    <label>Field Label</label>
+                    <input type="text" value={fieldLabel} oninput={handleLabelChange} class="input-control"
+                        placeholder="e.g. Status" />
+                </div>
+
+                <!-- Dynamic Config Fields -->
+                <template for:each={dynamicConfigFields} for:item="config">
+                    <div key={config.name} class="form-group">
+                        <label>{config.label}</label>
+
+                        <template if:true={config.isTextarea}>
+                            <textarea oninput={handleConfigChange} data-name={config.name} class="input-control"
+                                rows="3">{config.value}</textarea>
+                        </template>
+
+                        <template if:true={config.isCheckbox}>
+                            <input type="checkbox" onchange={handleConfigChange} data-name={config.name}
+                                checked={config.value} />
+                        </template>
+
+                        <template if:true={config.isNumber}>
+                            <input type="number" oninput={handleConfigChange} data-name={config.name}
+                                value={config.value} class="input-control" />
+                        </template>
+
+                        <!-- Fallback Text -->
+                        <template if:false={config.isTextarea}>
+                            <template if:false={config.isCheckbox}>
+                                <template if:false={config.isNumber}>
+                                    <!-- Only render if not one of above -->
+                                </template>
+                            </template>
+                        </template>
+                    </div>
+                </template>
+            </div>
+            <div class="actions">
+                <button onclick={handleBack} class="btn-secondary">Back</button>
+                <button onclick={handleNext} class="btn-primary">Next</button>
+            </div>
+        </template>
+
+        <!-- Step 3: Summary -->
+        <template if:true={isStep3}>
+            <div class="step-header">
+                <h2>Review & Save</h2>
+            </div>
+            <div class="summary-container">
+                <p><strong>Type:</strong> {selectedTypeLabel}</p>
+                <p><strong>Label:</strong> {fieldLabel}</p>
+                <!-- Display config values could be added here -->
+            </div>
+            <div class="actions">
+                <button onclick={handleBack} class="btn-secondary">Back</button>
+                <button onclick={handleSave} class="btn-primary">Save Field</button>
+            </div>
+        </template>
+    </div>
+</template>

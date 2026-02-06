@@ -1,0 +1,67 @@
+/* ==========================================================================
+   LAYOUT: DRAWER
+   Contract: Overlay primitive.
+   ========================================================================== */
+
+.drawer-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Tokenize later */
+  z-index: 49;
+  visibility: hidden;
+  opacity: 0;
+  transition: all var(--s-motion-duration) var(--s-motion-ease);
+}
+
+.drawer-backdrop.is-open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: var(--s-width-drawer);
+  max-width: 90vw;
+  background-color: var(--s-bg-surface);
+  box-shadow: var(--p-shadow-lg);
+  transform: translateX(100%);
+  transition: transform var(--s-motion-duration) var(--s-motion-ease);
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-backdrop.is-open .drawer {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  padding: 1rem;
+  border-bottom: var(--s-border-width-default) solid var(--s-border-default);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drawer-title {
+  margin: 0;
+  font-size: var(--s-font-size-card-title); /* similar size */
+  font-weight: var(--s-font-weight-semibold);
+  color: var(--s-text-primary);
+}
+
+.drawer-body {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.drawer-footer {
+  padding: 1rem;
+  border-top: var(--s-border-width-default) solid var(--s-border-default);
+}

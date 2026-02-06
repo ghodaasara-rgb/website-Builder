@@ -1,0 +1,106 @@
+/* ==========================================================================
+   COMPONENT: BUTTON
+   Contract: Consumes strictly --s-* tokens.
+   ========================================================================== */
+
+.btn {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  box-sizing: border-box;
+
+  /* Typography */
+  font-family: var(--s-font-family-body);
+  font-weight: var(--s-font-weight-medium);
+  font-size: var(--s-font-size-control);
+  line-height: 1.5;
+  text-decoration: none;
+  white-space: nowrap;
+
+  /* Appearance */
+  border: var(--s-border-width-default) solid transparent;
+  border-radius: var(--s-radius-control);
+  cursor: pointer;
+
+  /* Motion */
+  transition:
+    background-color var(--s-motion-duration) var(--s-motion-ease),
+    border-color var(--s-motion-duration) var(--s-motion-ease),
+    color var(--s-motion-duration) var(--s-motion-ease),
+    box-shadow var(--s-motion-duration) var(--s-motion-ease);
+
+  /* Spacing */
+  padding: var(--s-space-control-padding-y) var(--s-space-control-padding-x);
+}
+
+/* States - Shared */
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--s-ring-width) var(--s-ring-color);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Variant: Primary */
+.btn--primary {
+  background-color: var(--s-bg-primary);
+  color: var(--s-text-on-primary);
+}
+.btn--primary:hover {
+  background-color: var(--s-bg-primary-hover);
+}
+
+/* Variant: Secondary (Outline) */
+.btn--secondary {
+  background-color: transparent;
+  border-color: var(--s-border-default);
+  color: var(--s-text-primary);
+}
+.btn--secondary:hover {
+  background-color: var(--s-bg-surface-hover);
+  border-color: var(--s-text-secondary); /* darken border slightly? */
+}
+
+/* Variant: Destructive */
+.btn--destructive {
+  background-color: var(--s-bg-danger);
+  color: var(--s-text-on-primary);
+}
+.btn--destructive:hover {
+  background-color: var(
+    --s-bg-danger
+  ); /* Need hover token for danger. filter brightness? */
+  filter: brightness(90%);
+}
+
+/* Variant: Ghost */
+.btn--ghost {
+  background-color: transparent;
+  color: var(--s-text-primary);
+}
+.btn--ghost:hover {
+  background-color: var(--s-bg-surface-hover);
+}
+
+/* Sizes */
+.btn--sm {
+  font-size: var(--s-font-size-caption);
+  padding: var(--s-space-control-padding-sm);
+}
+
+.btn--lg {
+  font-size: 1.125rem;
+  padding: var(--s-space-control-padding-lg);
+}
+
+/* Full Width */
+.btn--block {
+  display: flex;
+  width: 100%;
+}

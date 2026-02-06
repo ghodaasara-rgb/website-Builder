@@ -1,0 +1,112 @@
+/* ==========================================================================
+   BUILDER CONTROLS
+   Context: The "Editor" UI.
+   Constraint: Must not interfere with inner SVG/Canvas.
+   ========================================================================== */
+
+.builder-canvas {
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+    var(--s-border-default) 1px,
+    transparent 1px
+  );
+  background-size: 20px 20px; /* Dot grid */
+  position: relative;
+  overflow: hidden;
+}
+
+.builder-dropzone {
+  border: 2px dashed var(--s-border-default);
+  background-color: var(--s-bg-surface);
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4rem;
+  transition: all var(--s-motion-duration) var(--s-motion-ease);
+}
+
+.builder-dropzone.is-active {
+  border-color: var(--s-bg-primary);
+  background-color: var(--p-color-brand-50);
+}
+
+/* Selected Component State */
+.builder-block {
+  position: relative;
+  border: 2px solid transparent; /* Reserve space for border */
+  transition: border-color 0.2s ease;
+}
+
+.builder-block.selected {
+  border-color: var(--s-bg-primary);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+  z-index: 10; /* Bring to front */
+}
+
+/* Add hover effect for better UX */
+.builder-block:hover {
+  border-color: var(--s-border-hover);
+}
+
+.builder-block.selected:hover {
+  border-color: var(
+    --s-bg-primary
+  ); /* Keep primary color when selected and hovered */
+}
+
+.builder-handle {
+  cursor: grab;
+  padding: 0.25rem;
+  color: var(--s-text-secondary);
+}
+.builder-handle:active {
+  cursor: grabbing;
+}
+
+.builder-selection-box {
+  position: absolute;
+  border: 2px solid var(--s-bg-primary);
+  background-color: rgba(37, 99, 235, 0.1); /* transparent brand */
+  pointer-events: none;
+  z-index: 100;
+}
+
+.builder-resize-handle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: var(--s-bg-primary);
+  border: 1px solid white;
+  z-index: 101;
+}
+/* Corners */
+.builder-resize-nw {
+  top: -4px;
+  left: -4px;
+  cursor: nw-resize;
+}
+.builder-resize-ne {
+  top: -4px;
+  right: -4px;
+  cursor: ne-resize;
+}
+.builder-resize-sw {
+  bottom: -4px;
+  left: -4px;
+  cursor: sw-resize;
+}
+.builder-resize-se {
+  bottom: -4px;
+  right: -4px;
+  cursor: se-resize;
+}
+
+.builder-properties-panel {
+  width: 300px;
+  border-left: 1px solid var(--s-border-default);
+  background-color: var(--s-bg-surface);
+  height: 100%;
+  overflow-y: auto;
+}

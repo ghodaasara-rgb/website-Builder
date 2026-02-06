@@ -1,0 +1,12 @@
+/* This script is generated */
+/* Client Bootstrap configuration */
+globalThis.LWR = globalThis.LWR || {};
+Object.assign(globalThis.LWR, {"appId":"dashboard","bootstrapModule":"@lwrjs/app-service/dashboard/module/esm/v/0_21_4","autoBoot":true,"imports":{"/1/bundle/esm/l/en-US/bi/0/module/mi/%40lwrjs%2Fapp-service%2Fdashboard%2Fmodule%2Fesm%2Fv%2F0_21_4/s/sha256--Y68hd-l03lfX9_5GWNaowanBzcwBSMqig-x9kqP5oY/bundle_@lwrjs_app-service_dashboard_module_esm.js":["@lwrjs/app-service/dashboard/module/esm/v/0_21_4"],"/1/bundle/esm/l/en-US/bi/0/module/mi/custom%2Fdashboard%2Fv%2F1_0_0/s/sha256-8izONjQfBE1GgvSgoZIa92pfMcYHJVgkIdJJamAUplM/bundle_custom_dashboard.js":["custom/dashboard/v/1_0_0"]},"index":{"@lwrjs/app-service/dashboard/module/esm/v/0_21_4":"/1/module/esm/0/l/en-US/mi/%40lwrjs%2Fapp-service%2Fdashboard%2Fmodule%2Fesm%2Fv%2F0_21_4/latest/@lwrjs_app-service_dashboard_module_esm.js","custom/dashboard/v/1_0_0":"/1/module/esm/0/l/en-US/mi/custom%2Fdashboard%2Fv%2F1_0_0/latest/custom_dashboard.js"},"rootComponents":["custom/dashboard/v/1_0_0"],"serverData":{},"endpoints":{"uris":{"mapping":"/1/mapping/esm/0/l/en-US/bi/0/mp/","module":"/1/bundle/esm/l/en-US/bi/0/module/mi/"}}});
+globalThis.LWR = {...globalThis.LWR, env: {"SSR":false,"SSREnabled":false,"basePath":"","locale":"en-US","assetBasePath":"","uiBasePath":""}};
+globalThis.process={...globalThis.process,env:{...globalThis.process?.env,...{"NODE_ENV":"prod"}}};
+globalThis.lwcRuntimeFlags = { ENABLE_MIXED_SHADOW_MODE: false, ENABLE_WIRE_SYNC_EMIT: false };
+// Appended by Static Site Generator
+if (!globalThis.LWR.imports) { globalThis.LWR.imports = {}; }
+Object.assign(globalThis.LWR.imports, {"/1/bundle/esm/l/en-US/bi/0/module/mi/lwc%2Fv%2F8_28_0/s/sha256-YEjxo0QDCp_Ri6v5gTkCFurICNw6jRY4sdZ3D70_fxc/bundle_lwc.js":["lwc/v/8_28_0"],"/1/bundle/esm/l/en-US/bi/0/module/mi/lwr%2FesmLoader%2Fv%2F0_21_4/s/sha256-XZ3-fTIQeMpr-t515p72MK4vr6gSnXsH3O_YELtRaFw/bundle_lwr_esmLoader.js":["lwr/esmLoader/v/0_21_4"],"/1/bundle/esm/l/en-US/bi/0/module/mi/lwr%2Fprofiler%2Fv%2F0_21_4/s/sha256-kGLXJohj797McyfBP40zJ-_7G1vXcR4obQNMGxQNgGk/bundle_lwr_profiler.js":["lwr/profiler/v/0_21_4"]})
+if (!globalThis.LWR.index) { globalThis.LWR.index = {}; }
+Object.assign(globalThis.LWR.index, {"lwc/v/8_28_0":"/1/module/esm/0/l/en-US/mi/lwc%2Fv%2F8_28_0/latest/lwc.js","lwr/esmLoader/v/0_21_4":"/1/module/esm/0/l/en-US/mi/lwr%2FesmLoader%2Fv%2F0_21_4/latest/lwr_esmLoader.js","lwr/profiler/v/0_21_4":"/1/module/esm/0/l/en-US/mi/lwr%2Fprofiler%2Fv%2F0_21_4/latest/lwr_profiler.js"})

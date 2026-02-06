@@ -1,0 +1,44 @@
+PROJECT CONTEXT:
+Framework: Lightning Web Runtime (LWR)
+Component System: Lightning Web Components (LWC)
+CSS Architecture: Custom CSS variables, scoped styles, no external CSS frameworks (unless specified).
+Backend: Node.js (Express/MySQL)
+
+REQUEST FORMAT:
+
+[OBJECTIVE]
+Enable the ability to import custom Lightning Web Components (LWC) directly from the frontend builder interface. Users should be able to upload a component folder or zip file containing the standard LWC files (.html, .js, .css, .js-meta.xml), and the system should process, save, and make it available in the builder's component palette.
+
+[AFFECTED AREAS]
+- Builder Side Panel (Components Tab)
+- Backend API (New endpoint for component upload)
+- Database (Table to store custom component metadata/code)
+- Component Registry (Frontend logic to register new components dynamically)
+
+[CURRENT BEHAVIOR]
+Currently, the component list is hardcoded or loaded from a static registry in the frontend code. There is no mechanism to upload or import new components at runtime.
+
+[DESIRED BEHAVIOR]
+1.  **Frontend**:
+    -   Add an "Import Component" button in the "Components" tab of the Side Panel.
+    -   Open a modal or file picker to select a folder or Zip file.
+    -   Validate that the uploaded files contain at least the required LWC files (main .html and .js).
+    -   Send the files to the backend.
+    -   Upon success, refresh the component list to show the new custom component under a "Custom" category.
+    -   Allow the new component to be dragged and dropped onto the canvas like any other component.
+
+2.  **Backend**:
+    -   Create an API endpoint (e.g., `POST /api/components/import`) to handle the file upload.
+    -   Validate the LWC structure.
+    -   Save the component code to a persistent storage (database or file system).
+    -   Save metadata to the database.
+
+[SPECIFIC REQUIREMENTS]
+-   **Validation**: Ensure the component name matches LWC naming conventions (kebab-case or camelCase map).
+-   **Dynamic Loading**: The builder must be able to load the JS/HTML of the uploaded component dynamically. (Note: Since standard LWC requires compilation, define a strategy: either store pre-compiled code or assume a runtime that supports dynamic evaluation, or just store the source and serve it if the environment supports it). *For this task, assume we need to store the source and the frontend needs a way to register it.*
+-   **Security**: Sanitize inputs to prevent malicious code injection.
+-   **Persistence**: Imported components should persist across sessions and be available for future sites.
+
+[ATTACHMENTS/REFERENCES]
+-   Reference `sidePanel.html` for the "Import" button placement.
+-   Reference `componentRegistry.js` for how components are currently registered.

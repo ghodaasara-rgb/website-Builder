@@ -1,0 +1,103 @@
+/* ==========================================================================
+   LAYOUT: GRID & CONTAINER
+   Contract: Metadata-friendly, responsive.
+   ========================================================================== */
+
+/* Container */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--s-space-container);
+  padding-right: var(--s-space-container);
+  max-width: 1280px; /* Or variable */
+}
+
+.container--fluid {
+  max-width: 100%;
+}
+
+/* Grid System (CSS Grid) */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--s-space-gap);
+}
+
+/* Spans */
+.col-span-1 {
+  grid-column: span 1 / span 1;
+}
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
+.col-span-3 {
+  grid-column: span 3 / span 3;
+}
+.col-span-4 {
+  grid-column: span 4 / span 4;
+}
+.col-span-5 {
+  grid-column: span 5 / span 5;
+}
+.col-span-6 {
+  grid-column: span 6 / span 6;
+}
+.col-span-7 {
+  grid-column: span 7 / span 7;
+}
+.col-span-8 {
+  grid-column: span 8 / span 8;
+}
+.col-span-9 {
+  grid-column: span 9 / span 9;
+}
+.col-span-10 {
+  grid-column: span 10 / span 10;
+}
+.col-span-11 {
+  grid-column: span 11 / span 11;
+}
+.col-span-12 {
+  grid-column: span 12 / span 12;
+}
+
+/* Responsive BREAKPOINTS (Hardcoded media queries often needed unless using container queries)
+   Note: Primitives for breakpoints? 
+   No strict "No media query" rule in "No hardcoded hex values".
+   I will use standard breakdowns.
+*/
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr; /* Stack by default on mobile */
+  }
+
+  .col-span-1,
+  .col-span-2,
+  .col-span-3,
+  .col-span-4,
+  .col-span-5,
+  .col-span-6,
+  .col-span-7,
+  .col-span-8,
+  .col-span-9,
+  .col-span-10,
+  .col-span-11,
+  .col-span-12 {
+    grid-column: 1 / -1; /* Full width */
+  }
+}
+
+/* Flex Grid (Alternative for 1D layouts) */
+.flex-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-space-gap);
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-space-gap);
+}

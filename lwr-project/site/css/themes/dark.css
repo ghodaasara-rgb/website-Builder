@@ -1,0 +1,26 @@
+/* ==========================================================================
+   THEME: DARK
+   ========================================================================== */
+
+[data-theme="dark"] {
+  /* Backgrounds */
+  --s-bg-page: var(--p-color-neutral-950);
+  --s-bg-surface: var(--p-color-neutral-900);
+  --s-bg-surface-hover: var(--p-color-neutral-800);
+  --s-bg-primary: var(
+    --p-color-brand-600
+  ); /* Often stays same or slightly lighter */
+  --s-bg-primary-hover: var(--p-color-brand-500);
+  --s-bg-danger: var(--p-color-red-500);
+  --s-bg-disabled: var(--p-color-neutral-800);
+
+  /* Text */
+  --s-text-primary: var(--p-color-neutral-50);
+  --s-text-secondary: var(--p-color-neutral-400);
+  --s-text-on-primary: var(--p-color-neutral-0);
+  --s-text-disabled: var(--p-color-neutral-600);
+
+  /* Borders */
+  --s-border-default: var(--p-color-neutral-700);
+  --s-border-focus: var(--p-color-brand-400);
+}

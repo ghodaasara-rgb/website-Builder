@@ -1,0 +1,53 @@
+{
+  "lwc": {
+    "modules": [
+      {
+        "dir": "$rootDir/src/modules"
+      }
+    ]
+  },
+  "assets": [
+    {
+      "alias": "css",
+      "dir": "$rootDir/src/assets/styles",
+      "urlPath": "/css"
+    },
+    {
+      "alias": "public",
+      "dir": "$rootDir/../public",
+      "urlPath": "/public"
+    }
+  ],
+  "routes": [
+    {
+      "id": "dashboard",
+      "path": "/",
+      "rootComponent": "custom/dashboard",
+      "layoutTemplate": "$rootDir/src/content/index.html"
+    },
+    {
+      "id": "editor",
+      "path": "/builder",
+      "rootComponent": "custom/builder",
+      "layoutTemplate": "$rootDir/src/content/index.html"
+    },
+    {
+      "id": "preview",
+      "path": "/preview",
+      "rootComponent": "custom/preview",
+      "layoutTemplate": "$rootDir/src/content/index.html"
+    },
+    {
+      "id": "preview_page",
+      "path": "/preview/:pageId",
+      "rootComponent": "custom/preview",
+      "layoutTemplate": "$rootDir/src/content/index.html"
+    },
+    {
+      "id": "schema_manager",
+      "path": "/schema-manager",
+      "rootComponent": "custom/schemaManager",
+      "layoutTemplate": "$rootDir/src/content/index.html"
+    }
+  ]
+}

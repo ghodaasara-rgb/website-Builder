@@ -1,0 +1,11 @@
+<template>
+    <div class="card-block">
+        <div class="card-body">
+            <h3 class="card-title">{title}</h3>
+            <p class="card-text">{content}</p>
+            <template lwc:if={action}>
+                <button class="btn btn--primary" onclick={handleAction}>{action}</button>
+            </template>
+        </div>
+    </div>
+</template>

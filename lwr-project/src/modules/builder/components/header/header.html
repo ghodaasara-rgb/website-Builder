@@ -1,0 +1,9 @@
+// src/modules/builder/components/header/header.html
+<template>
+  <div class="builder-header">
+    <lightning-button label="Undo" variant="neutral" onclick={handleUndo}></lightning-button>
+    <lightning-button label="Redo" variant="neutral" onclick={handleRedo}></lightning-button>
+    <lightning-button label="Save" variant="brand" onclick={handleManualSave}></lightning-button>
+    <lightning-button label="Publish" variant="success" onclick={handlePublish}></lightning-button>
+  </div>
+</template>

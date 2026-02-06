@@ -1,0 +1,201 @@
+/* ==========================================================================
+   ENTERPRISE CSS FRAMEWORK - TOKEN SYSTEM
+   Phase 1: Foundation & Token Governance
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     LAYER 1: GLOBAL PRIMITIVE TOKENS
+     Role: Raw, unopinionated values.
+     Rule: NEVER consumed directly by components.
+     ------------------------------------------------------------------------ */
+
+  /* Color Primitives - Neutral */
+  --p-color-neutral-0: #ffffff;
+  --p-color-neutral-50: #f8fafc;
+  --p-color-neutral-100: #f1f5f9;
+  --p-color-neutral-200: #e2e8f0;
+  --p-color-neutral-300: #cbd5e1;
+  --p-color-neutral-400: #94a3b8;
+  --p-color-neutral-500: #64748b;
+  --p-color-neutral-600: #475569;
+  --p-color-neutral-700: #334155;
+  --p-color-neutral-800: #1e293b;
+  --p-color-neutral-900: #0f172a;
+  --p-color-neutral-950: #020617;
+
+  /* Color Primitives - Brand (Abstracted) */
+  --p-color-brand-50: #eff6ff;
+  --p-color-brand-100: #dbeafe;
+  --p-color-brand-200: #bfdbfe;
+  --p-color-brand-300: #93c5fd;
+  --p-color-brand-400: #60a5fa;
+  --p-color-brand-500: #3b82f6;
+  --p-color-brand-600: #2563eb;
+  --p-color-brand-700: #1d4ed8;
+  --p-color-brand-800: #1e40af;
+  --p-color-brand-900: #1e3a8a;
+
+  /* Color Primitives - Semantic Intents (Error/Success/Warning) */
+  --p-color-red-50: #fef2f2;
+  --p-color-red-200: #fecaca;
+  --p-color-red-500: #ef4444;
+  --p-color-red-600: #dc2626;
+  --p-color-red-900: #7f1d1d;
+
+  --p-color-green-50: #f0fdf4;
+  --p-color-green-200: #bbf7d0;
+  --p-color-green-500: #22c55e;
+  --p-color-green-600: #16a34a;
+  --p-color-green-900: #14532d;
+
+  --p-color-amber-50: #fffbeb;
+  --p-color-amber-200: #fde68a;
+  --p-color-amber-500: #f59e0b;
+  --p-color-amber-600: #d97706;
+  --p-color-amber-900: #78350f;
+
+  /* Typography Primitives */
+  --p-font-family-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --p-font-family-mono: "Fira Code", monospace;
+
+  --p-font-size-xs: 0.75rem; /* 12px */
+  --p-font-size-sm: 0.875rem; /* 14px */
+  --p-font-size-md: 1rem; /* 16px */
+  --p-font-size-lg: 1.125rem; /* 18px */
+  --p-font-size-xl: 1.25rem; /* 20px */
+  --p-font-size-2xl: 1.5rem; /* 24px */
+
+  --p-font-weight-regular: 400;
+  --p-font-weight-medium: 500;
+  --p-font-weight-semibold: 600;
+  --p-font-weight-bold: 700;
+
+  /* Spacing Primitives (4px grid) */
+  --p-space-0: 0px;
+  --p-space-1: 0.25rem; /* 4px */
+  --p-space-2: 0.5rem; /* 8px */
+  --p-space-3: 0.75rem; /* 12px */
+  --p-space-4: 1rem; /* 16px */
+  --p-space-5: 1.25rem; /* 20px */
+  --p-space-6: 1.5rem; /* 24px */
+  --p-space-8: 2rem; /* 32px */
+  --p-space-10: 2.5rem; /* 40px */
+  --p-space-12: 3rem; /* 48px */
+
+  /* Radius Primitives */
+  --p-radius-sm: 0.125rem;
+  --p-radius-md: 0.25rem;
+  --p-radius-lg: 0.5rem;
+  --p-radius-full: 9999px;
+
+  /* Elevation Primitives */
+  --p-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --p-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --p-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  /* Motion Primitives */
+  --p-duration-fast: 150ms;
+  --p-duration-normal: 300ms;
+  --p-ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ------------------------------------------------------------------------
+     LAYER 2: SEMANTIC TOKENS (CONTRACT)
+     Role: The interface for components. 
+     Rule: Components MUST consume these, never primitives.
+     ------------------------------------------------------------------------ */
+
+  /* Backgrounds */
+  --s-bg-page: var(--p-color-neutral-50);
+  --s-bg-surface: var(--p-color-neutral-0);
+  --s-bg-surface-hover: var(--p-color-neutral-50);
+  --s-bg-primary: var(--p-color-brand-600);
+  --s-bg-primary-hover: var(--p-color-brand-700);
+  --s-bg-danger: var(--p-color-red-500);
+  --s-bg-disabled: var(--p-color-neutral-200);
+
+  /* Text */
+  --s-text-primary: var(--p-color-neutral-900);
+  --s-text-secondary: var(--p-color-neutral-500);
+  --s-text-on-primary: var(--p-color-neutral-0);
+  --s-text-disabled: var(--p-color-neutral-400);
+  --s-text-error: var(--p-color-red-600);
+
+  /* Borders */
+  --s-border-default: var(--p-color-neutral-200);
+  --s-border-hover: var(--p-color-neutral-300);
+  --s-border-focus: var(--p-color-brand-500);
+  --s-border-error: var(--p-color-red-500);
+  --s-border-width-default: 1px;
+
+  /* Semantic Intents (Subtle Backgrounds/Borders) */
+  --s-bg-error-subtle: var(--p-color-red-50);
+  --s-border-error-subtle: var(--p-color-red-200);
+  --s-text-error-strong: var(--p-color-red-900);
+
+  --s-bg-success-subtle: var(--p-color-green-50);
+  --s-border-success-subtle: var(--p-color-green-200);
+  --s-text-success-strong: var(--p-color-green-900);
+
+  --s-bg-warning-subtle: var(--p-color-amber-50);
+  --s-border-warning-subtle: var(--p-color-amber-200);
+  --s-text-warning-strong: var(--p-color-amber-900);
+
+  --s-bg-info-subtle: var(--p-color-brand-50);
+  --s-border-info-subtle: var(--p-color-brand-200);
+  --s-text-info-strong: var(--p-color-brand-900);
+
+  /* Focus Ring */
+  --s-ring-color: var(--p-color-brand-200);
+  --s-ring-width: 3px;
+
+  /* Typography */
+  --s-font-family-body: var(--p-font-family-sans);
+  --s-font-family-code: var(--p-font-family-mono);
+
+  --s-font-weight-regular: var(--p-font-weight-regular);
+  --s-font-weight-medium: var(--p-font-weight-medium);
+  --s-font-weight-semibold: var(--p-font-weight-semibold);
+  --s-font-weight-bold: var(--p-font-weight-bold);
+
+  /* Spacing (Contextual) */
+  --s-space-container: var(--p-space-6);
+  --s-space-gap: var(--p-space-4);
+
+  /* Shape */
+  --s-radius-control: var(--p-radius-md);
+
+  /* Control Specifics (Form Controls) */
+  --s-font-size-control: var(--p-font-size-sm);
+  --s-font-size-caption: var(--p-font-size-xs);
+  --s-space-control-padding-y: var(--p-space-2); /* 0.5rem */
+  --s-space-control-padding-x: var(--p-space-3); /* 0.75rem */
+  --s-space-control-padding-sm: var(--p-space-1) var(--p-space-2);
+  --s-space-control-padding-lg: var(--p-space-3) var(--p-space-4);
+  --s-space-control-icon-offset: var(--p-space-10);
+
+  /* Layout Specifics */
+  --s-width-modal-md: 32rem; /* Should utilize primitive ideally, but mapped here */
+  --s-width-drawer: 20rem;
+
+  --s-font-size-modal-title: var(--p-font-size-xl);
+  --s-font-size-card-title: var(--p-font-size-lg);
+
+  /* Sizing */
+  --s-size-icon: var(--p-space-4); /* 1rem / 16px */
+  --s-size-icon-sm: var(--p-space-3);
+  --s-size-icon-lg: var(--p-space-6);
+  --s-size-checkbox: var(--p-space-4);
+
+  /* Motion */
+  --s-motion-duration: var(--p-duration-fast);
+  --s-motion-ease: var(--p-ease-default);
+
+  /* ------------------------------------------------------------------------
+     LAYER 3: COMPONENT OVERRIDE TOKENS (OPTIONAL)
+     Role: Precision overrides.
+     Rule: Used sparingly. null by default (inheriting or not set).
+     ------------------------------------------------------------------------ */
+}
