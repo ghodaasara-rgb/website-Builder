@@ -794,87 +794,92 @@ app.post('/api/components/import', upload.single('file'), async (req, res) => {
         if (metaContent) {
             console.log('📄 Found metadata file:', metaFilename);
 
-            while ((match = propertyRegex.exec(metaContent)) !== null) {
-                const attributesString = match[1];
-                const attributes = {};
+            try {
+                // Regex to extract property definitions
+                const propertyRegex = /<property\s+([^>]+?)\/?>/g;
+                let match;
 
-                // Parse attributes
-                const attrRegex = /(\w+)=["']([^"']*)["']/g;
-                let attrMatch;
-                while ((attrMatch = attrRegex.exec(attributesString)) !== null) {
-                    attributes[attrMatch[1]] = attrMatch[2];
-                }
+                while ((match = propertyRegex.exec(metaContent)) !== null) {
+                    const attributesString = match[1];
+                    const attributes = {};
 
-                if (attributes.name && attributes.type) {
-                    const propName = attributes.name;
+                    // Parse attributes
+                    const attrRegex = /(\w+)=["']([^"']*)["']/g;
+                    let attrMatch;
+                    while ((attrMatch = attrRegex.exec(attributesString)) !== null) {
+                        attributes[attrMatch[1]] = attrMatch[2];
+                    }
 
-                    // Map XML types to Builder types
-                    let builderType = 'text'; // default
-                    let defaultValue = attributes.default || '';
+                    if (attributes.name && attributes.type) {
+                        const propName = attributes.name;
 
-                    switch (attributes.type) {
-                        case 'String':
-                            builderType = 'text';
-                            break;
-                        case 'Integer':
-                        case 'Double':
-                            builderType = 'number';
-                            break;
-                        case 'Boolean':
-                            builderType = 'checkbox';
-                            defaultValue = defaultValue === 'true';
-                            break;
-                        case 'Color': // Custom type extension
+                        // Map XML types to Builder types
+                        let builderType = 'text'; // default
+                        let defaultValue = attributes.default || '';
+
+                        switch (attributes.type) {
+                            case 'String':
+                                builderType = 'text';
+                                break;
+                            case 'Integer':
+                            case 'Double':
+                                builderType = 'number';
+                                break;
+                            case 'Boolean':
+                                builderType = 'checkbox';
+                                defaultValue = defaultValue === 'true';
+                                break;
+                            case 'Color': // Custom type extension
+                                builderType = 'color';
+                                break;
+                        }
+
+                        // Special case: Detect color by name if type is String
+                        if (attributes.type === 'String' && propName.toLowerCase().includes('color')) {
                             builderType = 'color';
-                            break;
+                        }
+
+                        // Add to default props
+                        componentMetadata.props[propName] = defaultValue;
+
+                        // Add to fields config
+                        componentMetadata.fields.push({
+                            name: propName,
+                            label: attributes.label || propName,
+                            type: builderType,
+                            description: attributes.description || ''
+                        });
                     }
-
-                    // Special case: Detect color by name if type is String
-                    if (attributes.type === 'String' && propName.toLowerCase().includes('color')) {
-                        builderType = 'color';
-                    }
-
-                    // Add to default props
-                    componentMetadata.props[propName] = defaultValue;
-
-                    // Add to fields config
-                    componentMetadata.fields.push({
-                        name: propName,
-                        label: attributes.label || propName,
-                        type: builderType,
-                        description: attributes.description || ''
-                    });
                 }
+                console.log('✅ Parsed metadata:', componentMetadata.fields.length, 'fields');
+
+            } catch (err) {
+                console.warn('⚠️ Failed to parse metadata:', err.message);
             }
-            console.log('✅ Parsed metadata:', componentMetadata.fields.length, 'fields');
-
-        } catch (err) {
-            console.warn('⚠️ Failed to parse metadata:', err.message);
         }
+
+        // Save to DB
+        const newComponent = await DB.createCustomComponent({
+            name: componentName,
+            label: componentName, // Ideally parse title from .js-meta.xml
+            path: `custom/${componentName}`,
+            type: 'custom',
+            // Save parsed metadata
+            defaultProps: componentMetadata.props,
+            fields: componentMetadata.fields
+        });
+
+        res.json({ success: true, component: newComponent });
+
+    } catch (error) {
+        console.error('Import failed:', error);
+        // Cleanup temp zip if processing failed
+        if (req.file && req.file.path) {
+            await fs.rm(req.file.path, { force: true }).catch(() => { });
+        }
+        res.status(500).json({ error: error.message || 'Failed to import component' });
     }
-
-            // Save to DB
-            const newComponent = await DB.createCustomComponent({
-        name: componentName,
-        label: componentName, // Ideally parse title from .js-meta.xml
-        path: `custom/${componentName}`,
-        type: 'custom',
-        // Save parsed metadata
-        defaultProps: componentMetadata.props,
-        fields: componentMetadata.fields
-    });
-
-    res.json({ success: true, component: newComponent });
-
-} catch (error) {
-    console.error('Import failed:', error);
-    // Cleanup temp zip if processing failed
-    if (req.file && req.file.path) {
-        await fs.rm(req.file.path, { force: true }).catch(() => { });
-    }
-    res.status(500).json({ error: error.message || 'Failed to import component' });
-}
-    });
+});
 
 // Setup Server
 async function start() {
