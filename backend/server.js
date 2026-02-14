@@ -30,10 +30,6 @@ const upload = multer({ dest: TEMP_DIR });
 
 const app = express();
 
-// ... (existing code) ...
-
-
-
 // CORS Configuration - Allow frontend URLs from environment variable
 const allowedOrigins = process.env.FRONTEND_URL
     ? process.env.FRONTEND_URL.split(',').map(url => url.trim().replace(/\/$/, '')) // Remove trailing slashes
@@ -904,15 +900,16 @@ async function start() {
 
 // Start if running directly
 if (import.meta.url === `file://${process.argv[1]}`) {
-    start();
+    start().catch(err => {
+        console.error('❌ Fatal startup error:', err);
+        process.exit(1);
+    });
 } else {
-    // Export for Vercel
-    // We need to ensure DB is initialized for serverless requests
-    // Note: In serverless, top-level await is preferred if supported, or init inside handler
-    // We'll lazy-init inside the exported handler if needed, but `start()` pattern is common.
-    // Actually, for Vercel to pick it up via `server.js` entry, we usually export default app.
-    // However, DB init needs to happen.
-    start();
+    // Vercel mode: Initialize DB but don't crash if it fails
+    start().catch(err => {
+        console.error('❌ DB initialization failed (Vercel):', err.message);
+        // App still serves requests - individual routes will fail gracefully
+    });
 }
 
 export default app;
