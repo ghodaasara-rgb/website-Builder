@@ -32,10 +32,7 @@ const app = express();
 
 // ... (existing code) ...
 
-// Later in the file:
-// Let's unzip to a temp staging folder first
-const tempStage = path.join(TEMP_DIR, `stage_${nanoid()}`);
-zip.extractAllTo(tempStage, true);
+
 
 // CORS Configuration - Allow frontend URLs from environment variable
 const allowedOrigins = process.env.FRONTEND_URL
