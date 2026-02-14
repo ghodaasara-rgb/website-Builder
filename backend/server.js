@@ -30,6 +30,11 @@ const upload = multer({ dest: TEMP_DIR });
 
 const app = express();
 
+// Diagnostic endpoint - no DB dependency
+app.get('/api/ping', (req, res) => {
+    res.json({ pong: true, timestamp: new Date().toISOString(), node: process.version, env: { MYSQL_HOST: !!process.env.MYSQL_HOST, MYSQL_DATABASE: !!process.env.MYSQL_DATABASE, MYSQL_PORT: process.env.MYSQL_PORT } });
+});
+
 // CORS Configuration - Allow frontend URLs from environment variable
 const allowedOrigins = process.env.FRONTEND_URL
     ? process.env.FRONTEND_URL.split(',').map(url => url.trim().replace(/\/$/, '')) // Remove trailing slashes
