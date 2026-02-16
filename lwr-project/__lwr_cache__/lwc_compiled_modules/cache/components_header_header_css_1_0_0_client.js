@@ -1,0 +1,8 @@
+function stylesheet(token, useActualHostSelector, useNativeDirPseudoclass) {
+  var shadowSelector = token ? ("[" + token + "]") : "";
+  var hostSelector = token ? ("[" + token + "-host]") : "";
+  var suffixToken = token ? ("-" + token) : "";
+  return ((useActualHostSelector ? ":host {" : hostSelector + " {")) + "display: block;width: 100%;}.site-header" + shadowSelector + " {display: flex;justify-content: space-between;align-items: center;padding: 0 1.5rem;height: 64px;background-color: #fff;border-bottom: 1px solid #e5e7eb;box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);}.branding" + shadowSelector + " {display: flex;align-items: center;gap: 0.75rem;}.logo-icon" + shadowSelector + " {display: flex;align-items: center;justify-content: center;}.brand-name" + shadowSelector + " {font-family: var(--font-primary, sans-serif);font-weight: 600;font-size: 1.25rem;color: #1f2937;letter-spacing: -0.025em;}.actions" + shadowSelector + " {display: flex;align-items: center;gap: 0.75rem;}.btn" + shadowSelector + " {padding: 0.5rem 1rem;border-radius: 0.375rem;font-weight: 500;font-size: 0.875rem;cursor: pointer;transition: all 0.2s;font-family: var(--font-primary, sans-serif);}.btn-primary" + shadowSelector + " {background-color: #3b82f6;background-color: #2563eb;color: white;border: none;}.btn-primary:hover" + shadowSelector + " {background-color: #1d4ed8;}.btn-primary" + shadowSelector + " {background-color: #1e3a8a;background-color: #31419e;}.btn-secondary" + shadowSelector + " {background-color: white;color: #374151;border: 1px solid #d1d5db;}.btn-secondary:hover" + shadowSelector + " {background-color: #f3f4f6;}";
+  /*LWC compiler v8.28.0*/
+}
+export default [stylesheet];

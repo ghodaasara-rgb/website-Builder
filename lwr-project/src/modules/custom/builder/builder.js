@@ -1,5 +1,5 @@
 import { LightningElement, track } from 'lwc';
-import { savePage, loadPage, loadSite, createPage, updateComponent, deletePage, addComponent } from 'custom/dataService';
+import { savePage, loadPage, loadSite, createPage, updateComponent, deletePage, addComponent, updateSite } from 'custom/dataService';
 import { COMPONENT_REGISTRY, fetchCustomComponents } from 'custom/componentRegistry';
 
 export default class Builder extends LightningElement {
@@ -611,6 +611,31 @@ export default class Builder extends LightningElement {
         const sidePanel = this.template.querySelector('custom-side-panel');
         if (sidePanel) {
             // force update
+        }
+    }
+
+    async handleSettingsChange(event) {
+        const updates = event.detail;
+        console.log('Saving site settings:', updates);
+
+        if (!this.siteId) {
+            console.error('Cannot save settings: Site ID missing');
+            return;
+        }
+
+        try {
+            // Map 'title' to 'name' if present (backend uses 'name')
+            if (updates.title) {
+                updates.name = updates.title;
+                delete updates.title;
+            }
+
+            await updateSite(this.siteId, updates);
+            // this.showNotification('Site settings saved', 'success'); 
+            // Optional: don't annoy user with too many toasts for auto-save
+        } catch (error) {
+            console.error('Failed to save site settings:', error);
+            this.showNotification('Failed to save settings', 'error');
         }
     }
 }

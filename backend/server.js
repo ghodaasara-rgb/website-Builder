@@ -78,6 +78,9 @@ app.use('/api/drafts', draftRoutes);
 app.use('/api/live', liveRoutes);
 app.use('/api/versions', versionRoutes);
 
+// Serve static files from public directory
+app.use('/public', express.static(path.join(__dirname, '../public')));
+
 // Paths for legacy data
 const LEGACY_DATA_DIR = path.join(__dirname, '../lwr-project/data');
 const LEGACY_PAGES_DIR = path.join(LEGACY_DATA_DIR, 'pages');
@@ -292,9 +295,9 @@ app.post('/api/sites', async (req, res) => {
 app.put('/api/sites/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, domain, status } = req.body;
+        const { name, domain, status, favicon } = req.body;
 
-        const updatedSite = await DB.updateSite(id, { name, domain, status });
+        const updatedSite = await DB.updateSite(id, { name, domain, status, favicon });
 
         if (!updatedSite) return res.status(404).json({ error: 'Site not found' });
 
@@ -302,6 +305,44 @@ app.put('/api/sites/:id', async (req, res) => {
     } catch (error) {
         console.error('Error updating site:', error);
         res.status(500).json({ error: 'Failed to update site' });
+    }
+});
+
+// Upload Favicon
+app.post('/api/sites/:id/favicon', upload.single('favicon'), async (req, res) => {
+    try {
+        const { id } = req.params;
+        if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
+
+        console.log('📦 Receiving favicon upload for site:', id);
+
+        // Define upload path
+        // For local: ../public/favicons/
+        // For Vercel, we can't persist to disk this way, usually user needs cloud storage (S3/Cloudinary)
+        // But for this demo, keeping it local/temp or committed if possible?
+        // Wait, Vercel file system is ephemeral. 
+        // For now, let's assume local persistence or temp storage that might be lost on redeploy
+
+        // Ensure static dir exists
+        const PUBLIC_DIR = path.join(__dirname, '../public');
+        const FAVICONS_DIR = path.join(PUBLIC_DIR, 'favicons');
+        await fs.mkdir(FAVICONS_DIR, { recursive: true });
+
+        const ext = path.extname(req.file.originalname);
+        const filename = `${id}_favicon_${Date.now()}${ext}`;
+        const targetPath = path.join(FAVICONS_DIR, filename);
+
+        // Move file
+        await fs.rename(req.file.path, targetPath);
+
+        // Update DB
+        const faviconUrl = `/public/favicons/${filename}`;
+        const updatedSite = await DB.updateSite(id, { favicon: faviconUrl });
+
+        res.json({ success: true, url: faviconUrl, site: updatedSite });
+    } catch (error) {
+        console.error('Error uploading favicon:', error);
+        res.status(500).json({ error: 'Failed to upload favicon' });
     }
 });
 

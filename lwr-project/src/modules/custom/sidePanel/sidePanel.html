@@ -306,6 +306,19 @@
                         onchange={handleSettingChange} placeholder="A brief description of your site"></textarea>
                 </div>
 
+                <div class="form-group">
+                    <label class="form-label">Favicon</label>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <input type="file" accept=".ico,.png,.jpg,.jpeg,.svg" onchange={handleFaviconUpload}
+                            class="form-input" style="padding: 4px;" />
+                        <template lwc:if={siteSettings.favicon}>
+                            <img src={siteSettings.favicon} alt="Favicon"
+                                style="width: 32px; height: 32px; object-fit: contain; border: 1px solid #ccc; border-radius: 4px;" />
+                        </template>
+                    </div>
+                    <small style="color: var(--s-text-secondary);">Recommended: 32x32px or 64x64px (ICO/PNG)</small>
+                </div>
+
                 <hr class="panel-divider" />
 
                 <!-- Export &amp; Deploy -->

@@ -2,7 +2,6 @@ import { LightningElement, track } from 'lwc';
 import { loadPage, loadSite, loadSiteTheme } from 'custom/dataService';
 
 export default class Preview extends LightningElement {
-    static renderMode = 'light';
     @track pageData = null;
     @track currentPage = null;
     @track sitePages = [];
@@ -181,14 +180,24 @@ export default class Preview extends LightningElement {
         try {
             let colors = null;
             let typography = {};
+            let siteInfo = null;
 
             // Try to load from database first
             if (this.currentSiteId) {
-                const theme = await loadSiteTheme(this.currentSiteId);
-                if (theme && theme.colors) {
-                    colors = theme.colors;
-                    typography = theme.typography || {};
-                    console.log('✓ Loaded theme from database:', theme);
+                // We need site info for title/favicon, loadSiteTheme returns basic theme
+                // But loadPreviewData already called loadSite() which returns full site object including theme?
+                // Actually loadSiteTheme depends on endpoint /sites/:id/theme
+                // Let's refactor: loadPreviewData calls loadSite(). loadSite returns "site" object.
+                // We should store that site object to access name/favicon.
+
+                // Fetch site details again or ensure we have them
+                const siteData = await loadSite(this.currentSiteId);
+                if (siteData) {
+                    siteInfo = siteData;
+                    if (siteData.theme && siteData.theme.colors) {
+                        colors = siteData.theme.colors;
+                        typography = siteData.theme.typography || {};
+                    }
                 }
             }
 
@@ -200,6 +209,22 @@ export default class Preview extends LightningElement {
                     colors = data;
                     typography = data.typography || {};
                     console.log('✓ Loaded theme from localStorage');
+                }
+            }
+
+            // APPLY TITLE AND FAVICON
+            if (siteInfo) {
+                if (siteInfo.name) {
+                    document.title = siteInfo.name;
+                }
+                if (siteInfo.favicon) {
+                    let link = document.querySelector("link[rel~='icon']");
+                    if (!link) {
+                        link = document.createElement('link');
+                        link.rel = 'icon';
+                        document.head.appendChild(link);
+                    }
+                    link.href = siteInfo.favicon;
                 }
             }
 

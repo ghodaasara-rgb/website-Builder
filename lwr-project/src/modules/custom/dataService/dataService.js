@@ -8,9 +8,20 @@
 // For local development, use localhost
 // Backend API URL
 // On Vercel, set the API_URL environment variable to your deployed backend URL
-const BACKEND_BASE = (import.meta.env && import.meta.env.API_URL) ||
-    process.env.API_URL ||
-    'https://backend-six-xi-72.vercel.app'; // Fallback to deployed backend
+const BACKEND_BASE = (function () {
+    if (import.meta.env && import.meta.env.API_URL) {
+        return import.meta.env.API_URL;
+    }
+    // Check if running in browser and on localhost
+    if (typeof window !== 'undefined') {
+        const hostname = window.location.hostname;
+        if (hostname === 'localhost' || hostname === '127.0.0.1') {
+            return 'http://localhost:3001';
+        }
+    }
+    return 'https://backend-six-xi-72.vercel.app';
+})();
+
 const API_BASE_URL = `${BACKEND_BASE}/api`;
 
 export async function loadSites() {
@@ -315,6 +326,63 @@ export async function deleteComponent(componentId) {
         return await response.json();
     } catch (error) {
         console.error('❌ Error deleting component:', error);
+        throw error;
+    }
+}
+
+/**
+ * Get all custom components
+ * @returns {Promise<Array>} List of custom components
+ */
+export async function getAllCustomComponents() {
+    if (USE_MYSQL) {
+        return await MysqlDB.getAllCustomComponents();
+    } else {
+        const db = await getDB();
+        return db.data.custom_components || [];
+    }
+}
+
+/**
+ * Upload Favicon for a site
+ * @param {string} siteId
+ * @param {File} file
+ */
+export async function uploadFavicon(siteId, file) {
+    try {
+        const formData = new FormData();
+        formData.append('favicon', file);
+
+        const response = await fetch(`${API_BASE_URL}/sites/${siteId}/favicon`, {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) throw new Error('Failed to upload favicon');
+        return await response.json();
+    } catch (error) {
+        console.error('❌ Error uploading favicon:', error);
+        throw error;
+    }
+}
+
+/**
+ * Update Site Settings (Name, Domain, Status, Favicon)
+ * @param {string} siteId
+ * @param {Object} updates
+ */
+export async function updateSite(siteId, updates) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/sites/${siteId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updates)
+        });
+
+        if (!response.ok) throw new Error('Failed to update site');
+        return await response.json();
+    } catch (error) {
+        console.error('❌ Error updating site:', error);
         throw error;
     }
 }

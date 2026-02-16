@@ -65,6 +65,7 @@ export async function updateSite(id, updates) {
         if (updates.name !== undefined) site.name = updates.name;
         if (updates.domain !== undefined) site.domain = updates.domain;
         if (updates.status !== undefined) site.status = updates.status;
+        if (updates.favicon !== undefined) site.favicon = updates.favicon;
         site.updatedAt = new Date().toISOString();
 
         await db.write();

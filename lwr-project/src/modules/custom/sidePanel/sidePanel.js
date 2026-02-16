@@ -1,6 +1,6 @@
 import { LightningElement, api, track } from 'lwc';
 import { COMPONENT_REGISTRY } from 'custom/componentRegistry';
-import { loadSiteTheme, saveSiteTheme, loadSite } from 'custom/dataService';
+import { loadSiteTheme, saveSiteTheme, loadSite, uploadFavicon } from 'custom/dataService';
 
 export default class SidePanel extends LightningElement {
     static renderMode = 'light';
@@ -32,6 +32,14 @@ export default class SidePanel extends LightningElement {
             const siteData = await loadSite();
             if (siteData && siteData.id) {
                 this.currentSiteId = siteData.id;
+
+                // Load Site Settings
+                this.siteSettings = {
+                    ...this.siteSettings,
+                    title: siteData.name || 'My Site', // Map name to title
+                    favicon: siteData.favicon || ''
+                };
+
                 const theme = await loadSiteTheme(siteData.id);
 
                 if (theme) {
@@ -636,6 +644,50 @@ export default class SidePanel extends LightningElement {
         };
 
         console.log('Setting changed:', field, value);
+
+        // Dispatch settings change to parent for persistence
+        this.dispatchEvent(new CustomEvent('settingschange', {
+            detail: { [field]: value }
+        }));
+    }
+
+    async handleFaviconUpload(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        if (!this.currentSiteId) {
+            alert('Save the site first before uploading a favicon.');
+            return;
+        }
+
+        try {
+            console.log('Uploading favicon...');
+            const result = await uploadFavicon(this.currentSiteId, file);
+
+            if (result.success && result.url) {
+                // Determine API URL prefix same as handleFileChange import
+                const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+                const isLocalDev = isLocal && location.port === '3002';
+                const API_URL = isLocalDev ? 'http://localhost:3001' : '';
+
+                const fullUrl = API_URL + result.url;
+
+                this.siteSettings = {
+                    ...this.siteSettings,
+                    favicon: fullUrl
+                };
+
+                // Dispatch settings change to parent
+                this.dispatchEvent(new CustomEvent('settingschange', {
+                    detail: { favicon: fullUrl }
+                }));
+
+                alert('Favicon uploaded successfully!');
+            }
+        } catch (error) {
+            console.error('Favicon export error:', error);
+            alert('Failed to upload favicon');
+        }
     }
 
     handleCheckboxChange(event) {

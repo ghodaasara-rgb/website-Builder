@@ -77,6 +77,15 @@ export async function initializeDatabase() {
                 `);
                 console.log('✓ Added status column');
             }
+
+            if (!columnNames.includes('favicon')) {
+                console.log('🔄 Adding favicon column to sites table...');
+                await connection.execute(`
+                    ALTER TABLE sites 
+                    ADD COLUMN favicon VARCHAR(500) DEFAULT NULL
+                `);
+                console.log('✓ Added favicon column');
+            }
         } catch (migrationError) {
             console.warn('⚠️  Migration warning:', migrationError.message);
         }
@@ -236,13 +245,14 @@ export async function updateSiteTheme(id, theme) {
 }
 
 export async function updateSite(id, updates) {
-    const { name, domain, status } = updates;
+    const { name, domain, status, favicon } = updates;
     const fields = [];
     const values = [];
 
     if (name !== undefined) { fields.push('name = ?'); values.push(name); }
     if (domain !== undefined) { fields.push('domain = ?'); values.push(domain); }
     if (status !== undefined) { fields.push('status = ?'); values.push(status); }
+    if (favicon !== undefined) { fields.push('favicon = ?'); values.push(favicon); }
 
     if (fields.length === 0) return getSiteById(id);
 
